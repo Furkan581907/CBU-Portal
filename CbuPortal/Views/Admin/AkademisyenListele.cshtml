@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "AkademisyenListele";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model List<CbuPortal.Models.Entities.AkademisyenListEntities>
+
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Data Table</strong>
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Akademisyen Id</th>
+                                    <th>Adı </th>
+                                    <th>Soyadı</th>
+                                    <th>Kayıt Tarihi</th>
+                                    <th>Akademisyen Bölümü</th>
+                                    <th>Kabul Durumu</th>
+                                    <th>Aktiflik</th>
+                                    <th>Düzenle</th>
+                                    <th>Kayıt Sil</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+
+                                        <td>@item.AkademisyenId</td>
+                                        <td>@item.AkademisyenAdi</td>
+                                        <td>@item.AkademisyenSoyad</td>
+                                        <td>@item.KayitTarihi</td>
+                                        <td>@item.AkademisyenBolumAdi</td>
+                                        <td>@item.KabulDurumu</td>
+                                        <td>@item.Aktiflik</td>
+                                        <td><a href="/Admin/AkademisyenGoruntule/@item.AkademisyenId" class="btn btn-warning">Düzenle</a></td>
+                                        <td><a id="@item.AkademisyenId" href="~/Admin/AkademisyenSil/@item.AkademisyenId" class="btn btn-danger">Sil</a></td>
+
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+                
+                
+            </div>
+                </div><!-- .animated -->
+            </div><!-- .content -->

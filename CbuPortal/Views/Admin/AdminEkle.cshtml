@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">Admin Ekleme</div>
+            <div class="card-body card-block">
+                <form action="/Admin/YeniAdminEkle/" method="post" class="">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            <input type="email" name="AdminMail" placeholder="Email" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            <input type="password" name="AdminSifre" placeholder="Şifre" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-actions form-group"><button type="submit" class="btn btn-success btn-sm">Kaydet</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

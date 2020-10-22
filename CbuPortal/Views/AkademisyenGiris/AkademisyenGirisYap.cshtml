@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "GirisYap";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+<div class="errormsg">
+    @ViewBag.message
+</div>
+<div class="container">
+    <div style="text-align:center;"><img class="mt-2" src="~/Theme/img/cbu-portal.png" alt="resim" style="width:20%"></div>
+    <div class="d-flex justify-content-center h-100">
+        <div class="card card-saydam border-0 shadow-lg">
+            <div class="row">
+                <div class="col-12 col-md-6 m-0 p-0">
+
+                    <div class="card-header">
+                        <h2 class="text-center text-light">Giriş Yap</h2>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm("AkademisyenGirisYap", "AkademisyenGiris", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                        {
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user" style="width:30px"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Email" name="AkademisyenMail" id="mail" required>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key" style="width:30px"></i></span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="Şifre" name="AkademisyenSifre" id="sifre"
+                                   required>
+                        </div>
+                        <div class="form-group mb-4">
+                            <button type="submit" value="Giriş" id="girisYap" class="btn float-right login_btn text-light" formmethod="post">Giriş</button>
+                        </div>
+                        }
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-center links">
+                            <button class="btn login_btn text-light" role="button" id="btnSifreUnuttum" data-toggle="modal"
+                                    data-target="#openModalID">
+                                Şifrenizi mi unuttunuz?
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-center links">
+                            <input class="AkademisyenKayitOl" type="button" value="Üye değil misin? Kayıt Ol" onclick="window.location.href='/AkademisyenGiris/AkademisyenUyeOl'" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="d-none d-md-block col-md-6 pl-0 border-0" style="margin-top: 35px; margin-bottom:25px;
+    padding-right: 40px;">
+
+                    <img class="rounded-right img-fluid m-0" src="~/Theme/img/akademisyen.jpg" style="height:360px " >
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="openModalID" aria-labelledby="ModalTitle" aria="true"
+         data-backdrop="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="ModalTitle2">Şifreni Sıfırla</h3>
+                    <button type="button" class="close times" data-dismiss="modal" aria-label="Kapatma işlemi">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="needs-validation">
+                        <div class="form-group">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class='fa fa-envelope' style='font-size:26px'></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Email" id="tbEmail" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" value="Gönder" class="btn login_btn text-light">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

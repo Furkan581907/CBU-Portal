@@ -1,0 +1,92 @@
+﻿@{
+    Layout = null;
+}
+
+@model List<CbuPortal.Models.Duyurular>
+
+@helper IcerikKisaltma(string metin)
+{               string a = "... Devamı İçin Detaylı İnceleyiniz";
+    if (metin.Length > 250)
+    {
+        @metin.Substring(0, 250) @a
+    }
+    else
+    {
+        @metin
+    }
+}
+@helper baslikisaltma(string metin)
+{
+    if (metin.Length > 20)
+    {
+        string a = "...";
+        @metin.Substring(0, 20) @a;
+    }
+    else
+    {
+        @metin
+    }
+}
+@if (Model.Count == 0)
+{
+    <div class="product-feed-tab current" id="feed-dd">
+        <div class="posts-section">
+            <h5> ne yazık ki hiç bir şey paylaşmadınız   </h5>
+        </div>
+    </div>
+}
+
+<div class="product-feed-tab current" id="feed-dd">
+    <div class="posts-section">
+        @foreach (var item in Model)
+        {
+            <div class="post-bar">
+                <div class="post_topbar">
+                    <div class="usy-dt">
+                        <img src="@ViewData["ProfilGosterResim"]" width="50px" height="50px" alt="">
+                        <div class="usy-name">
+                            <h3>@Html.Action("DuyuruYapan", "Duyuru", new { id = item.DuyuruyuYapanId })</h3>
+                            <span><img src="~/TemaYeni/images/clock.png" alt="">@item.DuyuruTarihi</span>
+                        </div>
+                    </div>
+                    <div class="ed-opts">
+                        <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+
+                        <ul class="ed-options">
+                            <li>
+                                <a href="/Duyuru/DuyuruyuSil/@item.Id">Duyuruyu Sil</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="epi-sec">
+                    <ul class="bk-links">
+                        <li><a href="/Duyuru/FavorilereEkle/@item.Id" title=""><i class="la la-bookmark"></i></a></li>
+                        <li><a href="/Duyuru/DuyuruDetay/@item.Id" title=""><i class="la la-comment"></i></a></li>
+                    </ul>
+                </div>
+                <div class="job_descp">
+                    <h3>@baslikisaltma(item.Baslik)</h3>
+                    <p>
+                        @IcerikKisaltma(item.Aciklama)
+                    <br />
+                    <a href="/Duyuru/DuyuruDetay/@item.Id" title="">Daha Fazlası..</a>
+                </p>
+
+            </div>
+            <div class="job-status-bar">
+                <ul class="like-com">
+                    <li>
+                        <a href="/Duyuru/FavorilereEkle/@item.Id" style="margin-right:35px"><i class="la la-heart"></i> Favorilere Ekle</a>
+                        <img src="images/liked-img.png" alt="">
+                        <span><i class="fa fa-heart"> </i>@Html.Action("DuyurununKaydedilmeSayisi", "Duyuru", new { id = item.Id })</span>
+                    </li>
+                    <li style="margin-left:10px"> <span><i class="fa fa-comment"> </i>@Html.Action("YorumSayisi", "Yorum", new { id = item.Id })</span></li>
+                </ul>
+                <a><i class="la la-eye"></i>Views 50 BUNU YAPMAYA ÇALIŞ</a>
+            </div>
+        </div><!--post-bar end-->
+
+    }
+    </div><!--posts-section end-->
+</div>

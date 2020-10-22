@@ -1,0 +1,142 @@
+﻿@section scripts{
+    <script src="~/TemaYeni/HTML/js/popper.js"></script>
+    <script src="~/TemaYeni/HTML/js/bootstrap.min.js"></script>
+    <script src="~/TemaYeni/HTML/js/jquery.min.js"></script>
+    <script src="~/TemaYeni/HTML/js/script.js"></script>
+    <script src="~/TemaYeni/HTML/js/scrollbar.js"></script>
+    <script src="~/TemaYeni/HTML/js/flatpickr.min.js"></script>
+    <script src="~/TemaYeni/HTML/js/jquery.mCustomScrollbar.js"></script>
+    <script src="~/TemaYeni/HTML/js/jquery.range-min.js"></script>
+    <script src="~/TemaYeni/HTML/lib/slick/slick.min.js"></script>
+
+}
+
+
+
+@using PagedList
+@using PagedList.Mvc
+@using CbuPortal.Models
+@model List<Duyurular>
+
+@helper IcerikKisaltma(string metin)
+{               string a = "... Devamı İçin Detaylı İnceleyiniz";
+    if (metin.Length > 250)
+    {
+        @metin.Substring(0, 250) @a
+    }
+    else
+    {
+        @metin
+    }
+}
+
+@{
+
+    Layout = null;
+    ViewBag.Title = "DuyuruListele";
+}
+
+
+@foreach (var item in Model.Take(5))
+{
+    <div class="post-bar">
+        <div class="post_topbar">
+            <div class="usy-dt">
+                <img src="@Html.Action("DuyuruYapaninResmi", "Duyuru", new { id = item.DuyuruyuYapanId })" width="30%">
+                <div class="usy-name">
+                    <a href="/Home/ProfilGoster/@item.DuyuruyuYapanId"><h3>@Html.Action("DuyuruYapan", "Duyuru", new { id = item.DuyuruyuYapanId })</h3></a>
+                    <span><img src="~/TemaYeni/Theme/HTML/images/clock.png" alt="">@item.DuyuruTarihi.Value.ToShortDateString()</span>
+                    <span><br /> @Html.Action("DuyuruTuru", "Home", new { id = item.Id })</span>
+                </div>
+            </div>
+            @if (item.DuyuruyuYapanId == Convert.ToInt32(Session["KullaniciId"]))
+            {
+                <div class="ed-opts">
+                    <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+
+                    <ul class="ed-options">
+                        <li>
+                            <a href="/Duyuru/DuyuruyuSil/@item.Id">Duyuruyu Sil</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <div style="display:none" id="@item.Id">   </div>
+            }
+
+        </div>
+        <div class="epi-sec">
+            <ul class="descp"></ul>
+            <ul class="bk-links">
+                <li><a href="/Duyuru/DuyuruDetay/@item.Id" title=""><i class="la la-comment"></i></a></li>
+            </ul>
+        </div>
+        <div class="job_descp">
+            <a href="/Duyuru/DuyuruDetay/@item.Id" title=""><h3>@item.Baslik</h3></a>
+            <p>@IcerikKisaltma(item.Aciklama) <a href="/Duyuru/DuyuruDetay/@item.Id" title="">Detaylı Bilgi</a></p>
+            @if (item.DuyuruTipi == "8")
+            {
+
+                Html.RenderAction("IsIlanDetay", "Home", new { id = item.Id });
+
+
+            }
+
+
+        </div>
+        <div class="job-status-bar">
+            <ul class="like-com">
+                <li>
+                    <a href="/Duyuru/FavorilereEkle/@item.Id"><i class="la la-heart"></i> Favorilere Ekle</a>
+                    <img src="~/TemaYeni/HTML/images/liked-img.png" alt="">
+                    <span>@Html.Action("DuyurununKaydedilmeSayisi", "Duyuru", new { id = item.Id })</span>
+                </li>
+                <li style="margin-left:10px"> <span><i class="fa fa-comment"> </i>@Html.Action("YorumSayisi", "Yorum", new { id = item.Id })</span></li>
+            </ul>
+            @if (item.DuyuruTipi == "6")
+            {
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#uploadModal" id="@item.Id">Ödev Gönder</button>
+
+            }
+
+        </div>
+        <div id="uploadModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Ödev Dosyası Gönder</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form -->
+                        <div class="form-group">
+                            <span>Göndereceğiniz ödevin başlığı : <strong>@item.Baslik</strong></span>
+
+                        </div>
+                        <form method='post' action='/OgrenciGiris/DosyaGonder/@item.DuyuruyuYapanId' enctype="multipart/form-data">
+                            <select style="display:none" name="DosyaDuyuruId">
+                                <option value="@item.Id"></option>
+                            </select>
+                            <div class="form-group">
+                                <input type='file' name='file' id='file' class='form-control' accept=".rar,.zip,.7z,.png,.jpg,.jpeg">
+                            </div>
+                            <div class="form-control">
+                                <textarea rows="4" cols="50" name="dosyaAciklama" class="input-group" placeholder="Ödev Açıklamasını Giriniz..."></textarea> 
+                            </div>
+                            <input type='submit' class='btn btn-info' value='Upload' id='btn_upload'>
+                        </form>
+
+                        <!-- Preview-->
+                        <div id='preview'></div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}
+

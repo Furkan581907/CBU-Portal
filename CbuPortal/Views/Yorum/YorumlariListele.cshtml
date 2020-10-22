@@ -1,0 +1,34 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="card my-4" id="yorum">
+    <h5 class="card-header">Yorum Yap</h5>
+    <div class="card-body">
+        <form action="/Yorum/YorumYap/@ViewData["id"]" method="post">
+            <div class="form-group">
+                <textarea class="form-control" rows="3" name="Yorum1"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Gönder</button>
+        </form>
+    </div>
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="media mb-4">
+        <img class="d-flex mr-3 rounded-circle" style="max-width: 10%;margin-left: 5px;"src="@Html.Action("YorumYapaninResmi", "Yorum", new { id = item.YorumYapanId })" alt="">
+        <div class="media-body">
+            <h5 class="mt-0">@Html.Action("YorumYapan", "Yorum", new { id = item.YorumYapanId })</h5>
+            <hr />
+            <span rows="14" cols="80"> @item.Yorum1</span>
+            @if (item.YorumYapanId == Convert.ToInt32(Session["KullaniciId"]))
+            {
+                <a class="btn btn-danger ml-auto" style="float:right;margin-right:4px;" href="/Yorum/YorumSil/@item.Id"><i class="fas fa-trash" style="margin-right:5px"></i>Yorum Sil</a>
+
+            }
+        </div>
+    </div>
+    <hr />
+
+}

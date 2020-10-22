@@ -1,0 +1,61 @@
+﻿﻿@model List<CbuPortal.Models.DuyuruTipleri>
+@{
+    ViewBag.Title = "DuyuruEkle";
+    Layout = null;
+}
+<div class="post-popup pst-pj">
+    <div class="post-project">
+        <h3>Genel Duyuru</h3>
+        <div class="post-project-fields">
+            @using (Html.BeginForm("DuyuruEkle", "Duyuru", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            {
+            <div class="row">
+                <div class="col-lg-12">
+                    <input placeholder="Duyuru Başlığını Giriniz" name="Baslik" type="text">
+                </div>
+                <div class="col-lg-12">
+                    <span style="margin-bottom:5px">Duyuru Resmi(Tercihen)</span>
+                    <br />
+                    <div>
+                        <input style=" padding: 10px 15px;height: 40px;" type="file" name="file" accept=".jpeg,.jpg,.png">
+                    </div>
+                </div>
+                <select style="display:none" name="DuyuruTipi">
+                    <option value="7"></option>
+                </select>
+                <span style="margin-left: 15px;">Duyurunun yorumları açılsın mı ?</span>
+                <div class="col-lg-12" style="border: 1px solid #e5e5e5;padding: 2px;margin: 0 18px 10px;max-width: 94%;">
+                    <div style="display:block">
+                        <label class="radio-inline"><input style="height:25px" type="radio" name="yorumDurumu" id="yorumAcik" value="Açık">Açık</label>
+                        <label class="radio-inline"><input style="height:25px" type="radio" name="yorumDurumu" id="yorumKapali" value="Kapalı">Kapalı</label>
+                    </div>
+                    </div>
+                <div class="col-lg-12">
+                    <textarea name="Aciklama" placeholder="Duyuru İçeriğini Giriniz"></textarea>
+                </div>
+                <div class="col-lg-12">
+                    <ul>
+                        <li><button class="active" type="submit" onclick="basariylaEklendi" value="post">Duyuruyu Yap</button></li>
+                        <li><a href="#" title="">Cancel</a></li>
+                    </ul>
+                </div>
+            </div>
+            }
+            </div><!--post-project-fields end-->
+        <a href="#" title=""><i class="la la-times-circle-o"></i></a>
+    </div><!--post-project end-->
+</div><!--post-project-popup end-->
+
+<script type="text/javascript">
+    function basariylaEklendi() {
+        swal({
+            title: "BAŞARILI",
+            text: "Duyurunuz Başarıyla Eklendi",
+            timer: 3000,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false
+        })
+    };
+</script>
+

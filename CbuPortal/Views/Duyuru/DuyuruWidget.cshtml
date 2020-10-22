@@ -1,0 +1,42 @@
+﻿@helper baslikisaltma(string metin)
+{
+    if (metin.Length > 20)
+    {
+        string a = "...";
+        @metin.Substring(0, 20) @a;
+    }
+    else
+    {
+        @metin
+    }
+}
+@helper duyuruKisalt(string metin)
+{
+    if (metin.Length > 20)
+    {
+        @metin.Substring(0, 20)
+    }
+    else
+    {
+        @metin
+    }
+}
+
+@model List<CbuPortal.Models.Duyurular>
+@{
+    Layout = null;
+}
+
+@foreach (CbuPortal.Models.Duyurular duyuru in Model)
+{
+    <div class="job-info">
+     <div class="job-details">
+        <a href="/Duyuru/DuyuruDetay/@duyuru.Id" style="text-transform:uppercase"><h3>@baslikisaltma(duyuru.Baslik)</h3></a>
+        <p>@duyuruKisalt(duyuru.Aciklama)</p>
+    </div>
+    <div class="hr-rate">
+        <span>@duyuru.DuyuruTarihi.Value.ToShortDateString()</span>
+    </div>
+        </div>
+
+}

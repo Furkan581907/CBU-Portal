@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "GirisYap";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+<div class="errormsg">
+    @ViewBag.message
+</div>
+<div class="container">
+    <div style="text-align:center; margin-top:-75px"><img class="mt-2" src="~/Theme/img/cbu-portal.png" alt="resim" style="width:20%"></div>
+    <div class=" justify-content-center h-100">
+        <div class="card card-saydam border-0 shadow-lg">
+            <div class="row">
+                <div class="col-12 col-md-12 col-xs-12">
+
+                    <div class="card-header">
+                        <h3 class="text-center text-light">Devam Etmek İçin Giriş Yapın</h3>
+                    </div>
+                </div>
+
+                <div class="col-xl-1 col-md-1"></div>
+                <div class="col-xl-5 col-md-5" style="margin-bottom:60px; margin-right:30px; background-image:url('../../Theme/img/5.jpg')" >
+                    <input class="MyButton" type="button" value="Öğrenci" onclick="window.location.href='/OgrenciGiris/GirisYap'" />
+
+                </div>
+                <div class="col-xl-5 col-md-5" style="margin-bottom:60px; background-image:url('../../Theme/img/akademisyen2.jpg');background-size:600px 400px ; background-repeat:no-repeat">
+                    <input class="MyButton" type="button" value="Akademisyen" onclick="window.location.href='/AkademisyenGiris/AkademisyenGirisYap'" />
+                </div>
+                <div class="col-xl-1 col-md-1 col-xs-1"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="openModalID" aria-labelledby="ModalTitle" aria="true"
+         data-backdrop="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="ModalTitle2">Şifreni Sıfırla</h3>
+                    <button type="button" class="close times" data-dismiss="modal" aria-label="Kapatma işlemi">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="needs-validation">
+                        <div class="form-group">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class='fa fa-envelope' style='font-size:26px'></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Email" id="tbEmail" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" value="Gönder" class="btn login_btn text-light">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

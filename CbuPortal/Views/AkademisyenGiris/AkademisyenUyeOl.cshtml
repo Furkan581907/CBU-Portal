@@ -1,0 +1,148 @@
+﻿@{
+    ViewBag.Title = "Üye Ol";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CBU PORTAL</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link href="~/temaGiris/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/temaGiris/assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/temaGiris/assets/css/form-elements.css">
+    <link rel="stylesheet" href="~/temaGiris/assets/css/style.css">
+    <link rel="shortcut icon" href="~/temaGiris/assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/temaGiris/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/temaGiris/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/temaGiris/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="~/temaGiris/assets/ico/apple-touch-icon-57-precomposed.png">
+</head>
+
+<body>
+
+    <div class="top-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 text">
+                    <h1>CBU <strong>PORTAL</strong></h1>
+                    <div class="description">
+                        <p>
+                            Zaten kayıtlı mısınız? Giriş yapmak için lütfen <a href="/Home/KarsilamaEkrani"><strong>buraya tıklayın</strong> </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box">
+                    <form class="f1" action="/AkademisyenGiris/AkademisyenUyeOl" method="post" enctype="multipart/form-data">
+                        <div class="f1-steps">
+                            <div class="f1-progress">
+                                <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="3" style="width: 16.66%;"></div>
+                            </div>
+                            <div class="f1-step active">
+                                <div class="f1-step-icon"><i class="fa fa-user"></i></div>
+                                <p>Hakkımda</p>
+                            </div>
+                            <div class="f1-step">
+                                <div class="f1-step-icon"><i class="fa fa-key"></i></div>
+                                <p>Eğitim</p>
+                            </div>
+                            <div class="f1-step">
+                                <div class="f1-step-icon"><i class="fa fa-twitter"></i></div>
+                                <p>Sosyal</p>
+                            </div>
+                        </div>
+
+                        <fieldset>
+                            <h4>Kişisel bilgileriniz profilinizi oluşturmamıza yardımcı olacak</h4>
+                            <div class="form-group">
+                                <input type="text" name="AkademisyenAdi" placeholder="Adınız" class="f1-first-name form-control" id="f1-first-name">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="AkademisyenSoyadi" placeholder="Soyadınız" class="f1-last-name form-control" id="f1-last-name">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" name="AkademisyenMail" placeholder="Mailiniz" class="f1-first-name form-control" id="f1-first-name">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="f1-password" placeholder="Şifreniz" class="f1-password form-control" id="f1-password">
+                            </div>
+                            <div class="form-group">
+                                <input type="file" class="form-control bari" name="file" id="foo" style="padding-bottom:35px;" accept=".jpg,.jpeg,.png">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="BiyografiIcerik" placeholder="Kendinizden bahsedin(Profilinizde görüntülenecek...)"
+                                          class="f1-about-yourself form-control" id="f1-about-yourself"></textarea>
+                            </div>
+                            <div class="f1-buttons">
+                                <button type="button" class="btn btn-next">Next</button>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <h4>Eğitmenlik Bilgileri</h4>
+                            <select name="AkademisyenBolumID" class="form-control">
+                                @foreach (CbuPortal.Models.Bolumler item in ViewBag.Bolumler)
+                                {
+                                    <option value="@item.BolumID">@item.BolumAdi</option>
+                                }
+                            </select>
+                            <div class="f1-buttons">
+                                <button type="button" class="btn btn-previous">Previous</button>
+                                <button type="button" class="btn btn-next">Next</button>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <h4>Sosyal Hesaplarınız(Varsa)</h4>
+                            <div class="form-group">
+                                <label class="sr-only" for="f1-facebook">Facebook</label>
+                                <input type="text" name="SosyalMedyaFacebook" placeholder="Facebook...">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="f1-twitter">Instagram</label>
+                                <input type="text" name="SosyalMedyaInstagram" placeholder="Instagram...">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="f1-google-plus">Linkedin</label>
+                                <input type="text" name="SosyalMedyaLinkedin" placeholder="Linkedin...">
+                            </div>
+                            <div class="f1-buttons">
+                                <button type="button" class="btn btn-previous">Previous</button>
+                                <button type="submit" class="btn btn-submit">Submit</button>
+                            </div>
+                        </fieldset>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Javascript -->
+    <script>
+        $('#foo').change(function () {
+            $(this).removeClass("bar");
+        })
+    </script>
+
+    <script src="~/temaGiris/assets/js/jquery-1.11.1.min.js"></script>
+    <script src="~/temaGiris/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/temaGiris/assets/js/jquery.backstretch.min.js"></script>
+    <script src="~/temaGiris/assets/js/retina-1.1.0.min.js"></script>
+    <script src="~/temaGiris/assets/js/scripts.js"></script>
+
+    <!--[if lt IE 10]>
+        <script src="assets/js/placeholder.js"></script>
+    <![endif]-->
+
+</body>
+
+</html>
+

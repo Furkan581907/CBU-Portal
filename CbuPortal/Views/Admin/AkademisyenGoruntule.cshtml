@@ -1,0 +1,90 @@
+﻿@{
+
+    ViewBag.Title = "AkademisyenListele";
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model CbuPortal.Models.Entities.AkademisyenListEntities
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">Example Form</div>
+            <div class="card-body card-block">
+                <form action="~/Admin/AkademisyenDuzenle/@Model.AkademisyenId" method="post" class="">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            <input type="email" id="@Model.AkademisyenId" name="AkademisyenMail" placeholder="Email" value="@Model.AkademisyenMail" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            <input type="text" id="email" name="AkademisyenAdi" placeholder="Adi" value="@Model.AkademisyenAdi" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            <input type="text" id="email" name="AkademisyenSoyadi" placeholder="Soyadi" value="@Model.AkademisyenSoyad" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            <input type="text" id="email" name="AkademisyenBolumID" placeholder="BolumId" value="@Model.AkademisyenBolumId" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            @if (Model.Aktiflik == true)
+                            {
+                                <select name="aktiflik" id="selectSm" class="form-control-sm form-control">
+                                    <option value="True" selected>Aktif</option>
+                                    <option value="False">Pasif</option>
+
+                                </select>
+                            }
+                            else
+                            {
+                                {
+                                    <select name="aktiflik" id="selectSm" class="form-control-sm form-control">
+                                        <option value="True">Aktif</option>
+                                        <option value="False" selected>Pasif</option>
+
+                                    </select>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            @if (Model.KabulDurumu == true)
+                            {
+                                <select name="KabulDurumu" id="selectSm" class="form-control-sm form-control">
+                                    <option value="True" selected>Kabul</option>
+                                    <option value="False">Pasif</option>
+
+                                </select>
+                            }
+                            else
+                            {
+                                <select name="KabulDurumu" id="selectSm" class="form-control-sm form-control">
+                                    <option value="True">Kabul</option>
+                                    <option value="False" selected>Pasif</option>
+
+                                </select>
+                            }
+
+                        </div>
+                    </div>
+                    <div class="form-actions form-group"><button type="submit" class="btn btn-success btn-sm">Düzenle</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

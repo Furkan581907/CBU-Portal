@@ -1,0 +1,51 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model List<CbuPortal.Models.Entities.MesajListEntities>
+
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Data Table</strong>
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Gönderen</th>
+                                    <th>Alıcı </th>
+                                    <th>Mesaj</th>
+                                    <th>Mesaj Tarihi</th>
+                                    
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+
+                                        <td>@item.GonderenAdi</td>
+                                        <td>@item.AliciAdi</td>
+                                        <td>@item.Mesaj</td>
+                                        <td>@item.MesajTarihi</td>
+
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div><!-- .animated -->
+</div><!-- .content -->

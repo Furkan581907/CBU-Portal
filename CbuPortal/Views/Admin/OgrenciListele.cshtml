@@ -1,0 +1,58 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model List<CbuPortal.Models.Entities.OgrenciListEntities>
+
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Data Table</strong>
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Öğrenci No</th>
+                                    <th>Adı </th>
+                                    <th>Soyadı</th>
+                                    <th>Kayıt Tarihi</th>
+                                    <th>Öğrenci Bölümü</th>
+                                    <th>Aktiflik</th>
+                                    <th>Düzenle</th>
+                                    <th>Kayıt Sil</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+
+                                        <td>@item.OgrenciNo</td>
+                                        <td>@item.OgrenciAdi</td>
+                                        <td>@item.OgrenciSoyadi</td>
+                                        <td>@item.OgrenciUyelikTarihi</td>
+                                        <td>@item.BolumAdi</td>
+                                        <td>@item.Aktiflik</td>
+                                        <td><a href="/Admin/OgrenciGoruntule/@item.OgrenciNo" class="btn btn-warning">Düzenle</a></td>
+                                        <td><a id="@item.OgrenciNo" href="~/Admin/OgrenciSil/@item.OgrenciNo" class="btn btn-danger">Sil</a></td>
+
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div><!-- .animated -->
+</div><!-- .content -->

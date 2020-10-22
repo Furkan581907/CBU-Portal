@@ -1,0 +1,37 @@
+﻿<button data-whatever="@Model.AkademisyenAdi" data-toggle="modal" data-target="#openModalID" type="button" class="mesaj">
+    <i class="fas fa-envelope"></i>
+</button>
+
+<div class="d-flex justify-content-center links my-1">
+    <div class="modal fade" tabindex="-1" role="dialog" id="openModalID" aria-labelledby="ModalTitle" aria="true"
+         data-backdrop="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="ModalTitle2">Dosya Gönder</h3>
+                    <button type="button" class="close times" data-dismiss="modal" aria-label="Kapatma işlemi">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="needs-validation">
+                        <div class="form-group">
+                            <div class="input-group form-group">
+                                <div class="form-group">
+                                    <label for="mesaj" style="font-weight: bold">@Model.DuyuruYapanId</label>
+                                    <input type="text" class="form-control" id="alici" placeholder="Alıcı" name="alici" disabled>
+
+                                    <label for="mesaj" style="font-weight: bold">Dosyanız</label>
+                                    <input type="file" name="dosyam" value="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="mesajGonder" type="submit" class="btn btn-dark">Gönder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

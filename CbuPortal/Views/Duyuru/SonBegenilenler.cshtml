@@ -1,0 +1,27 @@
+﻿
+@model List<CbuPortal.Models.Duyurular>
+@{
+    Layout = null;
+}
+
+<div class="col-lg-3">
+    <div class="right-sidebar">
+
+        <div class="widget widget-portfolio">
+            <div class="wd-heady">
+                <h3>Son Beğenilenler</h3>
+                <img src="images/photo-icon.png" alt="">
+            </div>
+            <div class="pf-gallery">
+                <ul>
+                    @foreach (var item in Model)
+                    {
+                        <li><a href="/Duyuru/DuyuruDetay/@item.Id" title=""><img src="@item.DuyuruResmi" alt=""></a></li>
+
+                    }
+
+                </ul>
+            </div><!--pf-gallery end-->
+        </div><!--widget-portfolio end-->
+    </div><!--right-sidebar end-->
+</div>

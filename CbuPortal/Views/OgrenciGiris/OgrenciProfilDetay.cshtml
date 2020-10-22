@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "OgrenciProfilDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-12 col-sm-8 col-lg-6 col-xl-7 mt-2 mt-sm-5">
+    <div>
+        <a href="#" data-toggle="modal" data-target="#openModalProfil" class="text-dark"><img class="img-profile mx-auto d-block golge" src="@Session["ProfilResim"]"></a>
+    </div>
+    <h5>Adı</h5>
+    <div class="label-info">
+        <h3 class="form-control" type="text"> @Session["KullaniciAdi"]</h3>
+    </div>
+    <h5>Soyadı</h5>
+    <div class="input-group form-group">
+        <h3 class="form-control" type="text"> @Session["KullaniciSoyad"]</h3>
+    </div>
+    <h5>Öğrenci Numarası</h5>
+    <div class="input-group form-group">
+        <h3 class="form-control" type="text"> @Session["KullaniciId"]</h3>
+    </div>
+    <h5>Mail Adresi</h5>
+    <div class="input-group form-group">
+        <h3 class="form-control" type="text"> @Session["KullaniciMail"]</h3>
+    </div>
+    @if (Session["KullaniciMail"].ToString() != null)
+    {
+
+    <div class="form-group mb-4" style="text-align:center">
+        <input type="button" value="Profili Güncelleme Sayfası" class="btn btn-warning" onclick="window.location.href='/OgrenciGiris/OgrenciProfilGuncelleSayfasi'">
+    </div>
+
+        <div class="form-group mb-4" style="text-align:center">
+            <input type="button" value="Şifre &nbsp Değiştir" class="btn btn-warning" onclick="window.location.href='/OgrenciGiris/OgrenciSifreDegistirSayfasi'">
+        </div>
+
+    }
+    </div>

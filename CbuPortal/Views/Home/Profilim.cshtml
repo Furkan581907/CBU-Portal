@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Profilim";
+    Layout = "~/Views/Shared/_LayoutProfil.cshtml";
+}
+
+
+@{
+    Html.RenderAction("KendiPaylastiklarim", "Home");
+}
+<div class="product-feed-tab" id="info-dd">
+    @{
+        Html.RenderAction("BiyografiGoster", "Home");
+    }
+    <div class="user-profile-ov st2">
+        <h3>İş Bilgilerim</h3>
+        <h4>Çalıştığı Yer </h4>
+        <p>@Session["CalistigiYer"]</p>
+        <h4>Çalıştığı Pozisyon</h4>
+        <p>@Session["CalistigiPozisyon"]</p>
+        <h4>Çalıştığı Şehir</h4>
+        <p class="no-margin">@Session["CalistigiSehir"]</p>
+    </div><!--user-profile-ov end-->
+</div><!--product-feed-tab end-->

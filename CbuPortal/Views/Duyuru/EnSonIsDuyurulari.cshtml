@@ -1,0 +1,48 @@
+﻿
+@helper baslikisaltma(string metin)
+{
+    if (metin.Length > 15)
+    {
+        string a = "...";
+        @metin.Substring(0, 14) @a;
+    }
+    else
+    {
+        @metin
+    }
+}
+@helper duyuruKisalt(string metin)
+{
+    if (metin.Length > 20)
+    {
+        @metin.Substring(0, 20)
+    }
+    else
+    {
+        @metin
+    }
+}
+
+@model List<CbuPortal.Models.Duyurular>
+@{
+    Layout = null;
+}
+<div class="suggestions full-width">
+    <div class="sd-title">
+        <h3>Son İş Duyuruları</h3>
+    </div><!--sd-title end-->
+    <div class="suggestions-list">
+        @foreach (CbuPortal.Models.Duyurular duyuru in Model)
+        {
+            <div class="suggestion-usd">
+                <img src="@Html.Action("DuyuruYapaninResmi", "Duyuru", new { id = duyuru.DuyuruyuYapanId })" alt="">
+                <div class="sgt-text">
+                    <a href="/Duyuru/DuyuruDetay/@duyuru.Id"><h4>@Html.Action("DuyuruYapan", "Duyuru", new { id = duyuru.DuyuruyuYapanId })</h4></a>
+                    <span>@duyuruKisalt(duyuru.Aciklama)</span>
+                </div>
+            </div>
+        }
+
+    </div><!--suggestions-list end-->
+</div>
+

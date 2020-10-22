@@ -1,0 +1,156 @@
+﻿@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Whatsapp App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Font Awesome File -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- CSS  -->
+    <link href="~/Mesaj/assets/css/style.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+    <div class="container app">
+        <div class="row app-one">
+            <div class="col-sm-4 side">
+                <div class="side-one">
+                    <!-- Heading -->
+                    <div class="row heading">
+                        <div class="col-sm-3 col-xs-3 heading-avatar">
+                            <div class="heading-avatar-icon picture-header">
+                                <img src="@Session["ProfilResim"]" alt="">
+                            </div>
+                        </div>
+                        <div class="col-sm-1 col-xs-1  heading-dot  pull-right">
+                            <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-sm-2 col-xs-2 heading-compose  pull-right">
+                            <i class="fa fa-comments fa-2x  pull-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <!-- Heading End -->
+                    <!-- SearchBox -->
+                    <div class="row searchBox">
+                        <div class="col-sm-12 searchBox-inner">
+                            <div class="form-group has-feedback">
+                                <input id="searchText" type="text" class="form-control" name="searchText" placeholder="İsmi yazıp enter tuşuna basınız...">
+                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Search Box End -->
+                    <!-- sideBar -->
+                    <div class="row sideBar">
+                        <div class="profiles">
+                            <!--Here goes the profiles created with JS-->
+                        </div>
+                    </div>
+                    <!-- Sidebar End -->
+                </div>
+
+
+                <div class="side-two">
+                    <!-- Heading -->
+                    <div class="row newMessage-heading">
+                        <div class="row newMessage-main">
+                            <div class="col-sm-2 col-xs-2 newMessage-back">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Heading End -->
+                    <!-- ComposeBox -->
+                    <div class="row composeBox">
+                        <div class="col-sm-12 composeBox-inner">
+                            <div class="form-group has-feedback">
+                                <input id="composeText" type="text" class="form-control" name="searchText" placeholder="Search People">
+                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ComposeBox End -->
+                </div>
+                <!-- Sidebar End -->
+            </div>
+
+            <!-- Conversation Start -->
+            <div class="col-sm-8 conversation">
+                <!-- Heading -->
+                <div class="row heading">
+                    <div class="whatsapp-names">
+
+                    </div>
+                </div>
+                <!-- Heading End -->
+                <!-- Message Box -->
+                <div class="row message" id="conversation">
+                    <div class="row message-previous">
+                        <div class="col-sm-12 previous">
+                        </div>
+                    </div>
+
+                    <div class="row message-body">
+                        <div class="col-sm-12 message-main-receiver">
+                            <div class="receiver">
+                                <div class="message-text">
+
+                                </div>
+                                <span class="message-time pull-right">Sun</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row message-body">
+                        <div class="col-sm-12 message-main-sender">
+                            <div class="sender">
+
+                                <span class="message-time pull-right">Sun</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Message Box End -->
+                <!-- Reply Box -->
+                <div class="row reply">
+                    <div class="col-sm-1 col-xs-1 reply-emojis" style="visibility:hidden">
+                        <i class="fa fa-smile-o fa-2x"></i>
+                    </div>
+                    <div class="col-sm-9 col-xs-9 reply-main">
+                        <input class="form-control" name="Mesaj" rows="1" id="new-whatsapp"  placeholder="Mesajınız..."/>
+                        <!--Here goes the whatsapp added by the user-->
+                    </div>
+                    <div class="col-sm-1 col-xs-1 reply-recording" style="visibility:hidden">
+                        <i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-sm-1 col-xs-1 reply-send">
+                        <i class="fa fa-send fa-2x" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <!-- Reply Box End -->
+            </div>
+            <!-- Conversation End -->
+        </div>
+        <!-- App One End -->
+    </div>
+
+    <!-- App End -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

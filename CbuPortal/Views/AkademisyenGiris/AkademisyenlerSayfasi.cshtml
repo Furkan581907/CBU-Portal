@@ -1,0 +1,30 @@
+﻿@model List<CbuPortal.Models.Akademisyen>
+@{
+    ViewBag.Title = "AkademisyenlerSayfasi";
+    Layout = "~/Views/Shared/_LayoutDuyuru.cshtml";
+}
+<div class="search-box" style="margin-bottom:20px">
+    @using (Html.BeginForm("AramaSonucuAkademisyen", "Duyuru", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        <input type="text" name="searchAka" placeholder="Akademisyenlerde Ara...">
+        <button type="submit">Ara</button>
+    }
+    </div>
+
+@foreach (CbuPortal.Models.Akademisyen item in Model)
+{
+    string s = " ";
+    <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="company_profile_info">
+            <div class="company-up-info">
+                <img src="@Html.Action("akademisyenlerSayfasiResim", "AkademisyenGiris", new { id = item.ProfilResimId })">
+                <h3 style="text-transform:uppercase">@item.AkademisyenAdi @s  @item.AkademisyenSoyadi</h3>
+                <h4>Bölüm bilgisi gelecek...</h4>
+                <ul>
+                    <li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
+                </ul>
+            </div>
+            <a href="/Home/ProfilGoster/@item.AkademisyenId" title="" class="view-more-pro">Profili Gör</a>
+        </div><!--company_profile_info end-->
+    </div>
+}

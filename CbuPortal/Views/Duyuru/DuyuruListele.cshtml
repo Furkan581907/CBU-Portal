@@ -1,0 +1,76 @@
+﻿@helper IcerikKisaltma(string metin)
+{               string a = "... Devamı İçin Detaylı İnceleyiniz";
+    if (metin.Length > 250)
+    {
+        @metin.Substring(0, 250) @a
+    }
+    else
+    {
+        @metin
+    }
+}
+
+@model List<CbuPortal.Models.Duyurular>
+@{
+    ViewBag.Title = "DuyuruListele";
+    Layout = "~/Views/Shared/_LayoutDuyuru.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 col-sm-2 col-lg-3 col-xl-2 pt-5 pt-sm-0">
+
+    </div>
+
+    <div class="col-12 col-sm-8 col-lg-8 col-xl-8 mt-5">
+        <div class="card border-dark">
+            <div class="card-header text-center isteColor" style="font-weight: bold;font-size: 20px">Duyurular</div>
+            <div class="card-body">
+                <blockquote class="blockquote"></blockquote>
+                <div class="list-group ">
+                    @foreach (CbuPortal.Models.Duyurular item in Model)
+                    {
+                    <div>@Html.Raw(ViewBag.Message)</div>
+                        <div class="d-flex list-group-item list-group-item-action flex-column align-items-start mb-2 golge">
+                            <div class="d-flex w-100 justify-content-start">
+                                <img class="card-img-top img-deneyim" src="@Html.Action("DuyuruYapaninResmi", "Duyuru", new { id = item.DuyuruyuYapanId })">
+                                <div>
+                                    <h4 class="mb-2 ml-3">@item.Baslik / @Html.Action("DuyuruYapan", "Duyuru", new { id = item.DuyuruyuYapanId })</h4>
+                                    <h6 class="ml-3">@IcerikKisaltma(item.Aciklama) </h6>
+                                </div>
+                                <small class="ml-auto">@item.DuyuruTarihi.Value.ToShortDateString()</small>
+                            </div>
+                            <div class="list-group" style="margin-left:185px">
+                                <ul>
+
+                                    <a class="btn btn-success" href="/Duyuru/DuyuruDetay/@item.Id"><i class="fas fa-search" style="margin-right:5px"></i>Detaylı İncele</a>
+                                    @if (item.DuyuruTipi == "6" && Session["rol"].ToString() == "Ogrenci")
+                                    {
+                                        <a class="btn btn-primary ml-auto" style="color:aliceblue"><i class="fas fa-briefcase" style="margin-right:5px"></i>Dosya Gönder</a>
+                                    }
+
+                                        <a class="btn btn-danger ml-auto" href="/Duyuru/FavorilereEkle/@item.Id"><i class="fas fa-heart" style="margin-right:5px"></i>Favoriye Ekle</a>
+
+                                    
+                                </ul>
+                            </div>
+
+                        </div>
+                    }
+
+                </div>
+            </div>
+            <div class="card-footer">
+                <nav>
+                    <!--justify-content-center/end diyerek konumu değiştirebiliriz.-->
+                    <ul class="pagination pagination-lg justify-content-center m-0">
+                        <li class="page-item disabled"><a href="#" class="page-link" tabindex="-1">&laquo;</a></li>
+                        <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                        <li class="page-item"><a href="#" class="page-link">2</a></li>
+                        <li class="page-item"><a href="#" class="page-link">3</a></li>
+                        <li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,681 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="cbuTezModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdminMail" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AdminSifre" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Akademisyen">
+          <Key>
+            <PropertyRef Name="AkademisyenId" />
+          </Key>
+          <Property Name="AkademisyenId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AkademisyenAdi" Type="varchar" MaxLength="50" />
+          <Property Name="AkademisyenSoyadi" Type="varchar" MaxLength="50" />
+          <Property Name="AkademisyenSifre" Type="varchar" MaxLength="150" />
+          <Property Name="AkademisyenMail" Type="varchar" MaxLength="120" />
+          <Property Name="AkademisyenRolID" Type="int" />
+          <Property Name="AkademisyenUyelikTarihi" Type="datetime" />
+          <Property Name="AkademisyenBolumID" Type="int" />
+          <Property Name="ProfilResimId" Type="int" />
+          <Property Name="KabulDurumu" Type="bit" />
+          <Property Name="Aktiflik" Type="bit" />
+        </EntityType>
+        <EntityType Name="Biografi">
+          <Key>
+            <PropertyRef Name="BiografiID" />
+          </Key>
+          <Property Name="BiografiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BiografiSahibiID" Type="int" Nullable="false" />
+          <Property Name="BiografiIcerik" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bolumler">
+          <Key>
+            <PropertyRef Name="BolumID" />
+          </Key>
+          <Property Name="BolumID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BolumAdi" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="DosyaGonderimleri">
+          <Key>
+            <PropertyRef Name="DosyaGonderimID" />
+          </Key>
+          <Property Name="DosyaGonderimID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DosyayıGonderenID" Type="int" Nullable="false" />
+          <Property Name="DosyayiAlanID" Type="int" Nullable="false" />
+          <Property Name="GonderilenDosyaID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dosyalar">
+          <Key>
+            <PropertyRef Name="DosyaID" />
+          </Key>
+          <Property Name="DosyaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DosyaDuyuruID" Type="int" />
+          <Property Name="DosyaYolu" Type="varchar" MaxLength="235" />
+          <Property Name="DosyaSahibiID" Type="int" />
+          <Property Name="DosyaYuklemeTarihi" Type="datetime" />
+          <Property Name="DosyaAciklamasi" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Duyurular">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Baslik" Type="nvarchar(max)" />
+          <Property Name="Aciklama" Type="text" />
+          <Property Name="DuyuruResmi" Type="nvarchar(max)" />
+          <Property Name="DuyuruTarihi" Type="datetime" />
+          <Property Name="DuyuruyuYapanId" Type="int" />
+          <Property Name="DuyuruTipi" Type="nvarchar" MaxLength="50" />
+          <Property Name="DuyuruDurum" Type="bit" />
+          <Property Name="DuyuruYorumaAcikMi" Type="bit" />
+        </EntityType>
+        <EntityType Name="DuyuruTipleri">
+          <Key>
+            <PropertyRef Name="TipId" />
+          </Key>
+          <Property Name="TipId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DuyuruTipi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Favoriler">
+          <Key>
+            <PropertyRef Name="FavoriId" />
+          </Key>
+          <Property Name="FavoriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FavoriSahibiId" Type="int" />
+          <Property Name="FavDuyuruId" Type="int" />
+          <Property Name="FavZamani" Type="datetime" />
+        </EntityType>
+        <EntityType Name="IsIlani">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SirketAdi" Type="nvarchar" MaxLength="250" />
+          <Property Name="SirketSehir" Type="nvarchar" MaxLength="250" />
+          <Property Name="SirketPozisyonu" Type="nvarchar" MaxLength="250" />
+          <Property Name="DuyuruId" Type="int" />
+        </EntityType>
+        <EntityType Name="KisiselDetay">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CalistigiFirma" Type="nvarchar(max)" />
+          <Property Name="CalistigiFirmaninIli" Type="nvarchar" MaxLength="250" />
+          <Property Name="MezuniyetYili" Type="nvarchar" MaxLength="4" />
+          <Property Name="Bolumu" Type="nvarchar(max)" />
+          <Property Name="KullaniciId" Type="int" />
+        </EntityType>
+        <EntityType Name="KullaniciRol">
+          <Key>
+            <PropertyRef Name="KullaniciRolID" />
+          </Key>
+          <Property Name="KullaniciRolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RolId" Type="int" Nullable="false" />
+          <Property Name="KullaniciID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mesajlar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GonderenId" Type="int" />
+          <Property Name="AliciId" Type="int" />
+          <Property Name="Mesaj" Type="text" />
+          <Property Name="MesajKonusu" Type="nvarchar" MaxLength="300" />
+          <Property Name="MesajTarihi" Type="datetime" />
+          <Property Name="OkunduMu" Type="bit" />
+        </EntityType>
+        <EntityType Name="Ogrenci">
+          <Key>
+            <PropertyRef Name="OgrenciNo" />
+          </Key>
+          <Property Name="OgrenciNo" Type="int" Nullable="false" />
+          <Property Name="OgrenciAdi" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OgrenciSoyadi" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OgrenciSifre" Type="varchar" MaxLength="135" Nullable="false" />
+          <Property Name="OgrenciTelefon" Type="nvarchar" MaxLength="11" />
+          <Property Name="OgrenciMail" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="OgrenciRolID" Type="int" Nullable="false" />
+          <Property Name="OgrenciUyelikTarihi" Type="datetime" Nullable="false" />
+          <Property Name="OgrenciBolumID" Type="int" Nullable="false" />
+          <Property Name="ProfilResimId" Type="int" />
+          <Property Name="OgrenciSinif" Type="nvarchar" MaxLength="50" />
+          <Property Name="Aktiflik" Type="bit" />
+        </EntityType>
+        <EntityType Name="ProfilResimleri">
+          <Key>
+            <PropertyRef Name="ProfilResimID" />
+          </Key>
+          <Property Name="ProfilResimID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProfilResmiYolu" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="RolID" />
+          </Key>
+          <Property Name="RolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RolAdi" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SosyalMedya">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SosyalMedyaLinkedin" Type="nvarchar(max)" />
+          <Property Name="SosyalMedyaFacebook" Type="nvarchar(max)" />
+          <Property Name="SosyalMedyaInstagram" Type="nvarchar(max)" />
+          <Property Name="DigerSite" Type="nvarchar(max)" />
+          <Property Name="KullaniciId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Yorum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GonderiId" Type="int" />
+          <Property Name="Yorum" Type="text" />
+          <Property Name="YorumYapanId" Type="int" />
+          <Property Name="YorumTarih" Type="datetime" />
+          <Property Name="YorumDurumu" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="cbuTezModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Akademisyen" EntityType="Self.Akademisyen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Biografi" EntityType="Self.Biografi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bolumler" EntityType="Self.Bolumler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DosyaGonderimleri" EntityType="Self.DosyaGonderimleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dosyalar" EntityType="Self.Dosyalar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Duyurular" EntityType="Self.Duyurular" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DuyuruTipleri" EntityType="Self.DuyuruTipleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Favoriler" EntityType="Self.Favoriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IsIlani" EntityType="Self.IsIlani" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KisiselDetay" EntityType="Self.KisiselDetay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KullaniciRol" EntityType="Self.KullaniciRol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mesajlar" EntityType="Self.Mesajlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ogrenci" EntityType="Self.Ogrenci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfilResimleri" EntityType="Self.ProfilResimleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SosyalMedya" EntityType="Self.SosyalMedya" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yorum" EntityType="Self.Yorum" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="cbuTezModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Akademisyen">
+          <Key>
+            <PropertyRef Name="AkademisyenId" />
+          </Key>
+          <Property Name="AkademisyenId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AkademisyenAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AkademisyenSoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AkademisyenSifre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="AkademisyenMail" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="AkademisyenRolID" Type="Int32" />
+          <Property Name="AkademisyenUyelikTarihi" Type="DateTime" Precision="3" />
+          <Property Name="AkademisyenBolumID" Type="Int32" />
+          <Property Name="ProfilResimId" Type="Int32" />
+          <Property Name="KabulDurumu" Type="Boolean" />
+          <Property Name="Aktiflik" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Biografi">
+          <Key>
+            <PropertyRef Name="BiografiID" />
+          </Key>
+          <Property Name="BiografiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BiografiSahibiID" Type="Int32" Nullable="false" />
+          <Property Name="BiografiIcerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bolumler">
+          <Key>
+            <PropertyRef Name="BolumID" />
+          </Key>
+          <Property Name="BolumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BolumAdi" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DosyaGonderimleri">
+          <Key>
+            <PropertyRef Name="DosyaGonderimID" />
+          </Key>
+          <Property Name="DosyaGonderimID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DosyayıGonderenID" Type="Int32" Nullable="false" />
+          <Property Name="DosyayiAlanID" Type="Int32" Nullable="false" />
+          <Property Name="GonderilenDosyaID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dosyalar">
+          <Key>
+            <PropertyRef Name="DosyaID" />
+          </Key>
+          <Property Name="DosyaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DosyaDuyuruID" Type="Int32" />
+          <Property Name="DosyaYolu" Type="String" MaxLength="235" FixedLength="false" Unicode="false" />
+          <Property Name="DosyaSahibiID" Type="Int32" />
+          <Property Name="DosyaYuklemeTarihi" Type="DateTime" Precision="3" />
+          <Property Name="DosyaAciklamasi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Duyurular">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Baslik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DuyuruResmi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DuyuruTarihi" Type="DateTime" Precision="3" />
+          <Property Name="DuyuruyuYapanId" Type="Int32" />
+          <Property Name="DuyuruTipi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DuyuruDurum" Type="Boolean" />
+          <Property Name="DuyuruYorumaAcikMi" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="DuyuruTipleri">
+          <Key>
+            <PropertyRef Name="TipId" />
+          </Key>
+          <Property Name="TipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DuyuruTipi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Favoriler">
+          <Key>
+            <PropertyRef Name="FavoriId" />
+          </Key>
+          <Property Name="FavoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FavoriSahibiId" Type="Int32" />
+          <Property Name="FavDuyuruId" Type="Int32" />
+          <Property Name="FavZamani" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="IsIlani">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SirketAdi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SirketSehir" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SirketPozisyonu" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DuyuruId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="KisiselDetay">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CalistigiFirma" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CalistigiFirmaninIli" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MezuniyetYili" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="Bolumu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="KullaniciRol">
+          <Key>
+            <PropertyRef Name="KullaniciRolID" />
+          </Key>
+          <Property Name="KullaniciRolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RolId" Type="Int32" Nullable="false" />
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mesajlar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="GonderenId" Type="Int32" />
+          <Property Name="AliciId" Type="Int32" />
+          <Property Name="Mesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MesajKonusu" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="MesajTarihi" Type="DateTime" Precision="3" />
+          <Property Name="OkunduMu" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Ogrenci">
+          <Key>
+            <PropertyRef Name="OgrenciNo" />
+          </Key>
+          <Property Name="OgrenciNo" Type="Int32" Nullable="false" />
+          <Property Name="OgrenciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OgrenciSoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OgrenciSifre" Type="String" MaxLength="135" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OgrenciTelefon" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="OgrenciMail" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OgrenciRolID" Type="Int32" Nullable="false" />
+          <Property Name="OgrenciUyelikTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OgrenciBolumID" Type="Int32" Nullable="false" />
+          <Property Name="ProfilResimId" Type="Int32" />
+          <Property Name="OgrenciSinif" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Aktiflik" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ProfilResimleri">
+          <Key>
+            <PropertyRef Name="ProfilResimID" />
+          </Key>
+          <Property Name="ProfilResimID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProfilResmiYolu" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="RolID" />
+          </Key>
+          <Property Name="RolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RolAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SosyalMedya">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SosyalMedyaLinkedin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SosyalMedyaFacebook" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SosyalMedyaInstagram" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DigerSite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Yorum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GonderiId" Type="Int32" />
+          <Property Name="Yorum1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="YorumYapanId" Type="Int32" />
+          <Property Name="YorumTarih" Type="DateTime" Precision="3" />
+          <Property Name="YorumDurumu" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="cbuTezEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Akademisyen" EntityType="Self.Akademisyen" />
+          <EntitySet Name="Biografi" EntityType="Self.Biografi" />
+          <EntitySet Name="Bolumler" EntityType="Self.Bolumler" />
+          <EntitySet Name="DosyaGonderimleri" EntityType="Self.DosyaGonderimleri" />
+          <EntitySet Name="Dosyalar" EntityType="Self.Dosyalar" />
+          <EntitySet Name="Duyurular" EntityType="Self.Duyurular" />
+          <EntitySet Name="DuyuruTipleri" EntityType="Self.DuyuruTipleri" />
+          <EntitySet Name="Favoriler" EntityType="Self.Favoriler" />
+          <EntitySet Name="IsIlani" EntityType="Self.IsIlani" />
+          <EntitySet Name="KisiselDetay" EntityType="Self.KisiselDetay" />
+          <EntitySet Name="KullaniciRol" EntityType="Self.KullaniciRol" />
+          <EntitySet Name="Mesajlar" EntityType="Self.Mesajlar" />
+          <EntitySet Name="Ogrenci" EntityType="Self.Ogrenci" />
+          <EntitySet Name="ProfilResimleri" EntityType="Self.ProfilResimleri" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
+          <EntitySet Name="SosyalMedya" EntityType="Self.SosyalMedya" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Yorum" EntityType="Self.Yorum" />
+          <EntitySet Name="Admin" EntityType="cbuTezModel.Admin" />
+        </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminMail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AdminSifre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="cbuTezModelStoreContainer" CdmEntityContainer="cbuTezEntities">
+          <EntitySetMapping Name="Akademisyen">
+            <EntityTypeMapping TypeName="cbuTezModel.Akademisyen">
+              <MappingFragment StoreEntitySet="Akademisyen">
+                <ScalarProperty Name="Aktiflik" ColumnName="Aktiflik" />
+                <ScalarProperty Name="KabulDurumu" ColumnName="KabulDurumu" />
+                <ScalarProperty Name="AkademisyenId" ColumnName="AkademisyenId" />
+                <ScalarProperty Name="AkademisyenAdi" ColumnName="AkademisyenAdi" />
+                <ScalarProperty Name="AkademisyenSoyadi" ColumnName="AkademisyenSoyadi" />
+                <ScalarProperty Name="AkademisyenSifre" ColumnName="AkademisyenSifre" />
+                <ScalarProperty Name="AkademisyenMail" ColumnName="AkademisyenMail" />
+                <ScalarProperty Name="AkademisyenRolID" ColumnName="AkademisyenRolID" />
+                <ScalarProperty Name="AkademisyenUyelikTarihi" ColumnName="AkademisyenUyelikTarihi" />
+                <ScalarProperty Name="AkademisyenBolumID" ColumnName="AkademisyenBolumID" />
+                <ScalarProperty Name="ProfilResimId" ColumnName="ProfilResimId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Biografi">
+            <EntityTypeMapping TypeName="cbuTezModel.Biografi">
+              <MappingFragment StoreEntitySet="Biografi">
+                <ScalarProperty Name="BiografiID" ColumnName="BiografiID" />
+                <ScalarProperty Name="BiografiSahibiID" ColumnName="BiografiSahibiID" />
+                <ScalarProperty Name="BiografiIcerik" ColumnName="BiografiIcerik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bolumler">
+            <EntityTypeMapping TypeName="cbuTezModel.Bolumler">
+              <MappingFragment StoreEntitySet="Bolumler">
+                <ScalarProperty Name="BolumID" ColumnName="BolumID" />
+                <ScalarProperty Name="BolumAdi" ColumnName="BolumAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DosyaGonderimleri">
+            <EntityTypeMapping TypeName="cbuTezModel.DosyaGonderimleri">
+              <MappingFragment StoreEntitySet="DosyaGonderimleri">
+                <ScalarProperty Name="DosyaGonderimID" ColumnName="DosyaGonderimID" />
+                <ScalarProperty Name="DosyayıGonderenID" ColumnName="DosyayıGonderenID" />
+                <ScalarProperty Name="DosyayiAlanID" ColumnName="DosyayiAlanID" />
+                <ScalarProperty Name="GonderilenDosyaID" ColumnName="GonderilenDosyaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dosyalar">
+            <EntityTypeMapping TypeName="cbuTezModel.Dosyalar">
+              <MappingFragment StoreEntitySet="Dosyalar">
+                <ScalarProperty Name="DosyaID" ColumnName="DosyaID" />
+                <ScalarProperty Name="DosyaDuyuruID" ColumnName="DosyaDuyuruID" />
+                <ScalarProperty Name="DosyaYolu" ColumnName="DosyaYolu" />
+                <ScalarProperty Name="DosyaSahibiID" ColumnName="DosyaSahibiID" />
+                <ScalarProperty Name="DosyaYuklemeTarihi" ColumnName="DosyaYuklemeTarihi" />
+                <ScalarProperty Name="DosyaAciklamasi" ColumnName="DosyaAciklamasi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Duyurular">
+            <EntityTypeMapping TypeName="cbuTezModel.Duyurular">
+              <MappingFragment StoreEntitySet="Duyurular">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Baslik" ColumnName="Baslik" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="DuyuruResmi" ColumnName="DuyuruResmi" />
+                <ScalarProperty Name="DuyuruTarihi" ColumnName="DuyuruTarihi" />
+                <ScalarProperty Name="DuyuruyuYapanId" ColumnName="DuyuruyuYapanId" />
+                <ScalarProperty Name="DuyuruTipi" ColumnName="DuyuruTipi" />
+                <ScalarProperty Name="DuyuruDurum" ColumnName="DuyuruDurum" />
+                <ScalarProperty Name="DuyuruYorumaAcikMi" ColumnName="DuyuruYorumaAcikMi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DuyuruTipleri">
+            <EntityTypeMapping TypeName="cbuTezModel.DuyuruTipleri">
+              <MappingFragment StoreEntitySet="DuyuruTipleri">
+                <ScalarProperty Name="TipId" ColumnName="TipId" />
+                <ScalarProperty Name="DuyuruTipi" ColumnName="DuyuruTipi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Favoriler">
+            <EntityTypeMapping TypeName="cbuTezModel.Favoriler">
+              <MappingFragment StoreEntitySet="Favoriler">
+                <ScalarProperty Name="FavoriId" ColumnName="FavoriId" />
+                <ScalarProperty Name="FavoriSahibiId" ColumnName="FavoriSahibiId" />
+                <ScalarProperty Name="FavDuyuruId" ColumnName="FavDuyuruId" />
+                <ScalarProperty Name="FavZamani" ColumnName="FavZamani" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IsIlani">
+            <EntityTypeMapping TypeName="cbuTezModel.IsIlani">
+              <MappingFragment StoreEntitySet="IsIlani">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SirketAdi" ColumnName="SirketAdi" />
+                <ScalarProperty Name="SirketSehir" ColumnName="SirketSehir" />
+                <ScalarProperty Name="SirketPozisyonu" ColumnName="SirketPozisyonu" />
+                <ScalarProperty Name="DuyuruId" ColumnName="DuyuruId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KisiselDetay">
+            <EntityTypeMapping TypeName="cbuTezModel.KisiselDetay">
+              <MappingFragment StoreEntitySet="KisiselDetay">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CalistigiFirma" ColumnName="CalistigiFirma" />
+                <ScalarProperty Name="CalistigiFirmaninIli" ColumnName="CalistigiFirmaninIli" />
+                <ScalarProperty Name="MezuniyetYili" ColumnName="MezuniyetYili" />
+                <ScalarProperty Name="Bolumu" ColumnName="Bolumu" />
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KullaniciRol">
+            <EntityTypeMapping TypeName="cbuTezModel.KullaniciRol">
+              <MappingFragment StoreEntitySet="KullaniciRol">
+                <ScalarProperty Name="KullaniciRolID" ColumnName="KullaniciRolID" />
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mesajlar">
+            <EntityTypeMapping TypeName="cbuTezModel.Mesajlar">
+              <MappingFragment StoreEntitySet="Mesajlar">
+                <ScalarProperty Name="OkunduMu" ColumnName="OkunduMu" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GonderenId" ColumnName="GonderenId" />
+                <ScalarProperty Name="AliciId" ColumnName="AliciId" />
+                <ScalarProperty Name="Mesaj" ColumnName="Mesaj" />
+                <ScalarProperty Name="MesajKonusu" ColumnName="MesajKonusu" />
+                <ScalarProperty Name="MesajTarihi" ColumnName="MesajTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ogrenci">
+            <EntityTypeMapping TypeName="cbuTezModel.Ogrenci">
+              <MappingFragment StoreEntitySet="Ogrenci">
+                <ScalarProperty Name="Aktiflik" ColumnName="Aktiflik" />
+                <ScalarProperty Name="OgrenciNo" ColumnName="OgrenciNo" />
+                <ScalarProperty Name="OgrenciAdi" ColumnName="OgrenciAdi" />
+                <ScalarProperty Name="OgrenciSoyadi" ColumnName="OgrenciSoyadi" />
+                <ScalarProperty Name="OgrenciSifre" ColumnName="OgrenciSifre" />
+                <ScalarProperty Name="OgrenciTelefon" ColumnName="OgrenciTelefon" />
+                <ScalarProperty Name="OgrenciMail" ColumnName="OgrenciMail" />
+                <ScalarProperty Name="OgrenciRolID" ColumnName="OgrenciRolID" />
+                <ScalarProperty Name="OgrenciUyelikTarihi" ColumnName="OgrenciUyelikTarihi" />
+                <ScalarProperty Name="OgrenciBolumID" ColumnName="OgrenciBolumID" />
+                <ScalarProperty Name="ProfilResimId" ColumnName="ProfilResimId" />
+                <ScalarProperty Name="OgrenciSinif" ColumnName="OgrenciSinif" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfilResimleri">
+            <EntityTypeMapping TypeName="cbuTezModel.ProfilResimleri">
+              <MappingFragment StoreEntitySet="ProfilResimleri">
+                <ScalarProperty Name="ProfilResimID" ColumnName="ProfilResimID" />
+                <ScalarProperty Name="ProfilResmiYolu" ColumnName="ProfilResmiYolu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="cbuTezModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+                <ScalarProperty Name="RolAdi" ColumnName="RolAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SosyalMedya">
+            <EntityTypeMapping TypeName="cbuTezModel.SosyalMedya">
+              <MappingFragment StoreEntitySet="SosyalMedya">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SosyalMedyaLinkedin" ColumnName="SosyalMedyaLinkedin" />
+                <ScalarProperty Name="SosyalMedyaFacebook" ColumnName="SosyalMedyaFacebook" />
+                <ScalarProperty Name="SosyalMedyaInstagram" ColumnName="SosyalMedyaInstagram" />
+                <ScalarProperty Name="DigerSite" ColumnName="DigerSite" />
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="cbuTezModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yorum">
+            <EntityTypeMapping TypeName="cbuTezModel.Yorum">
+              <MappingFragment StoreEntitySet="Yorum">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GonderiId" ColumnName="GonderiId" />
+                <ScalarProperty Name="Yorum1" ColumnName="Yorum" />
+                <ScalarProperty Name="YorumYapanId" ColumnName="YorumYapanId" />
+                <ScalarProperty Name="YorumTarih" ColumnName="YorumTarih" />
+                <ScalarProperty Name="YorumDurumu" ColumnName="YorumDurumu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="cbuTezModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="AdminSifre" ColumnName="AdminSifre" />
+                <ScalarProperty Name="AdminMail" ColumnName="AdminMail" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

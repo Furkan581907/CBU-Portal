@@ -1,0 +1,111 @@
+﻿@helper IcerikKisaltma(string metin)
+{               string a = "...";
+    if (metin.Length > 40)
+    {
+        @metin.Substring(0, 40) @a
+    }
+    else
+    {
+        @metin
+    }
+}
+@model CbuPortal.Models.Duyurular
+
+@{
+    ViewBag.Title = "DuyuruDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="post-bar">
+    <div class="post_topbar">
+        <div class="usy-dt">
+            <img src="@Html.Action("DuyuruYapaninResmi", "Duyuru", new { id = Model.DuyuruyuYapanId })" width="30%">
+            <div class="usy-name">
+                <h3>@Html.Action("DuyuruYapan", "Duyuru", new { id = Model.DuyuruyuYapanId })</h3>
+                <span><img src="~/TemaYeni/Theme/HTML/images/clock.png" alt="">@Model.DuyuruTarihi.Value.ToShortDateString()</span>
+            </div>
+        </div>
+        @if (Model.DuyuruyuYapanId == Convert.ToInt32(Session["KullaniciId"]))
+        {
+            <div class="ed-opts">
+                <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+
+                <ul class="ed-options">
+                    <li>
+                        <a href="/Duyuru/DuyuruyuSil/@Model.Id">Duyuruyu Sil</a>
+                    </li>
+                </ul>
+
+            </div>
+        }
+    </div>
+
+    <div class="epi-sec">
+        <ul class="descp"></ul>
+        <ul class="bk-links">
+            <li><a href="/Duyuru/FavorilereEkle/@Model.Id" title=""><i class="la la-bookmark"></i></a></li>
+            <li><a href="#yorum" title=""><i class="la la-comment"></i></a></li>
+        </ul>
+    </div>
+    <div class="job_descp">
+        <h3 style="text-transform:capitalize">@Model.Baslik</h3>
+        <p>@Model.Aciklama</p>
+        <a href="@Model.DuyuruResmi" download ><img style="width: 80%;" title="Resmi indirmek için tıklayın" src="@Model.DuyuruResmi"/></a>
+    
+</div>
+    <div class="job-status-bar">
+        <ul class="like-com">
+            <li>
+                <a href="/Duyuru/FavorilereEkle/@Model.Id"><i class="la la-heart"></i> Favorilere Ekle</a>
+                <img src="~/TemaYeni/HTML/images/liked-img.png" alt="">
+                <span>@Html.Action("DuyurununKaydedilmeSayisi", "Duyuru", new { id = Model.Id })</span>
+            </li>
+            <li style="margin-left:10px"> <span><i class="fa fa-comment"> </i>@Html.Action("YorumSayisi", "Yorum", new { id = Model.Id })</span></li>
+        </ul>
+
+    </div>
+
+
+    @if (Model.DuyuruYorumaAcikMi == true)
+    {
+        Html.RenderAction("YorumlariListele", "Yorum", Model.Id);
+    }
+
+
+</div>
+
+<div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Write to us</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/OgrenciGiris/DosyaGonder/@Model.DuyuruyuYapanId" method="post" enctype="multipart/form-data">
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-5">
+                        <i class="fas fa-tag prefix grey-text"></i>
+                        <input type="file" name="file" accept=".zip,.rar,.7zip" />
+                    </div>
+
+                    <div class="md-form">
+                        <i class="fas fa-pencil prefix grey-text"></i>
+                        <textarea type="text" id="form8" name="dosyaAciklama" class="md-textarea form-control" rows="4"></textarea>
+                        <select style="display:none" name="id2">
+                            <option value="@Model.Id"></option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success">Gönder <i class="fas fa-paper-plane-o ml-1"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

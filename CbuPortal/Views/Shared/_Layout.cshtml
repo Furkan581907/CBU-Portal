@@ -1,0 +1,441 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CBU PORTAL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href="~/Theme/fontawesome/css/all.css" rel="stylesheet" />
+    <link href="~/Theme/css/anasayfa.css" rel="stylesheet" />
+    <link href="~/Theme/css/fontawesome.css" rel="stylesheet" />
+    <link href="~/Theme/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/animate.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/lib/slick/slick.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/lib/slick/slick-theme.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/line-awesome-font-awesome.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/line-awesome-font-awesome.min.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/line-awesome.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/line-awesome.min.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/responsive.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/style.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/flatpickr.min.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/jquery.range.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+</head>
+
+
+<body>
+    <div class="wrapper">
+
+        <header>
+            <div class="container">
+                <div class="header-data">
+                    <div class="logo">
+                        <a href="#" title=""><img src="~/TemaYeni/HTML/images/cbu-portal.png" width="30" height="30" alt=""></a>
+                    </div><!--logo end-->
+                    <div class="search-bar">
+                        @using (Html.BeginForm("AramaSonucu", "Duyuru", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                        {
+                            <input type="text" name="search" placeholder="Duyurularda Ara...">
+                            <button type="submit"><i class="la la-search"></i></button>
+                        }
+                    </div><!--search-bar end-->
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="/Home/Index" title="">
+                                    <span><i class="fa fa-home"></i></span>
+                                    Ana Sayfa
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Duyuru/FavorileriListele/@Session["KullaniciId"]" title="">
+                                    <span><i class="fas fa-heart"></i></span>
+                                    Favoriler
+                                </a>
+                            </li>
+                            @if (Session["rol"].ToString() != "Akademisyen")
+                            {
+                                <li>
+                                    <a href="/AkademisyenGiris/AkademisyenlerSayfasi" title="">
+                                        <span><i class="fas fa-chalkboard-teacher"></i></span>
+                                        Akademisyenler
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="AkademisyenGiris/AkademisyenlerSayfasi" title="">
+                                        <span><img src="~/TemaYeni/HTML/images/icon4.png" alt=""></span>
+                                        Öğrenciler
+                                    </a>
+                                </li>
+                            }
+
+                            <li>
+                                <a href="/Duyuru/IsDuyurulariSayfasi" title="">
+                                    <span><i class="fas fa-briefcase"></i></span>
+                                    İş İlanları
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" title="" class="not-box-open">
+                                    <span><img src="~/TemaYeni/HTML/images/icon6.png" alt=""></span>
+                                    Mesajlar
+                                </a>
+                                <div class="notification-box msg">
+                                    <div class="nt-title">
+                                        <h4>Setting</h4>
+                                        <a href="#" title="">Clear all</a>
+                                    </div>
+                                    <div class="nott-list">
+                                        <div class="notfication-details">
+                                            <div class="noty-user-img">
+                                                <img src="~/TemaYeni/HTML/images/resources/ny-img1.png" alt="">
+                                            </div>
+                                            <div class="notification-info">
+                                                <h3><a href="messages.html" title="">Jassica William</a> </h3>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</p>
+                                                <span>2 min ago</span>
+                                            </div><!--notification-info -->
+                                        </div>
+                                        <div class="notfication-details">
+                                            <div class="noty-user-img">
+                                                <img src="~/TemaYeni/HTML/images/resources/ny-img2.png" alt="">
+                                            </div>
+                                            <div class="notification-info">
+                                                <h3><a href="messages.html" title="">Jassica William</a></h3>
+                                                <p>Lorem ipsum dolor sit amet.</p>
+                                                <span>2 min ago</span>
+                                            </div><!--notification-info -->
+                                        </div>
+                                        <div class="notfication-details">
+                                            <div class="noty-user-img">
+                                                <img src="~/TemaYeni/HTML/images/resources/ny-img3.png" alt="">
+                                            </div>
+                                            <div class="notification-info">
+                                                <h3><a href="messages.html" title="">Jassica William</a></h3>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut labore et dolore magna aliqua.</p>
+                                                <span>2 min ago</span>
+                                            </div><!--notification-info -->
+                                        </div>
+                                        <div class="view-all-nots">
+                                            <a href="/Mesaj/MesajEkrani" title="">View All Messsages</a>
+                                        </div>
+                                    </div><!--nott-list end-->
+                                </div><!--notification-box end-->
+                            </li>
+                            <li>
+                                <a href="#" title="" class="not-box-open">
+                                    <span><i class="fa fa-bolt"></i></span>
+                                    Billdirim
+                                </a>
+                                <div class="notification-box">
+                                    <div class="nt-title">
+                                        <h4>Setting</h4>
+                                        <a href="#" title="">Clear all</a>
+                                    </div>
+                                    <div class="nott-list">
+                                        <div class="notfication-details">
+                                            <div class="noty-user-img">
+                                                <img src="~/TemaYeni/HTML/images/resources/ny-img1.png" alt="">
+                                            </div>
+                                            <div class="notification-info">
+                                                <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+                                                <span>2 min ago</span>
+                                            </div><!--notification-info -->
+                                        </div>
+                                        <div class="notfication-details">
+                                            <div class="noty-user-img">
+                                                <img src="~/TemaYeni/HTML/images/resources/ny-img2.png" alt="">
+                                            </div>
+                                            <div class="notification-info">
+                                                <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+                                                <span>2 min ago</span>
+                                            </div><!--notification-info -->
+                                        </div>
+                                        <div class="notfication-details">
+                                            <div class="noty-user-img">
+                                                <img src="~/TemaYeni/HTML/images/resources/ny-img3.png" alt="">
+                                            </div>
+                                            <div class="notification-info">
+                                                <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+                                                <span>2 min ago</span>
+                                            </div><!--notification-info -->
+                                        </div>
+                                        <div class="notfication-details">
+                                            <div class="noty-user-img">
+                                                <img src="~/TemaYeni/HTML/images/resources/ny-img2.png" alt="">
+                                            </div>
+                                            <div class="notification-info">
+                                                <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+                                                <span>2 min ago</span>
+                                            </div><!--notification-info -->
+                                        </div>
+                                        <div class="view-all-nots">
+                                            <a href="#" title="">View All Notification</a>
+                                        </div>
+                                    </div><!--nott-list end-->
+                                </div><!--notification-box end-->
+                            </li>
+                        </ul>
+                    </nav><!--nav end-->
+                    <div class="menu-btn">
+                        <a href="#" title=""><i class="fa fa-bars"></i></a>
+                    </div><!--menu-btn end-->
+                    <div class="user-account">
+
+                        <div class="user-info">
+                            <a href="#" style="font-size:18px">@Session["KullaniciAdi"]</a>
+                            <i class="la la-sort-down"></i>
+                        </div>
+                        <div class="user-account-settingss">
+                            <h3>Hesabınız</h3>
+                            <ul class="us-links">
+                                <li><a href="/Home/HesapAyarlari" title="">Hesap Ayarları</a></li>
+                                <li><a href="#" title="">Profil Ayarları</a></li>
+                                <li><a href="/Home/Profilim" title="">Profiliniz</a></li>
+                            </ul>
+                            <h3 class="tc"><a href="/OgrenciGiris/CikisYap" title="">Çıkış Yap</a></h3>
+                        </div><!--user-account-settingss end-->
+                    </div>
+                </div><!--header-data end-->
+            </div>
+        </header><!--header end-->
+        <main>
+            <div class="main-section">
+                <div class="container">
+                    <div class="main-section-data">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 pd-left-none no-pd">
+                                <div class="main-left-sidebar no-margin">
+                                    <div class="user-data full-width">
+                                        <div class="user-profile">
+                                            <div class="username-dt">
+                                                <div class="usr-pic">
+                                                    <img src="@Session["ProfilResim"]" alt="">
+                                                </div>
+                                            </div><!--username-dt end-->
+                                            <div class="user-specs">
+                                                <h3>@Session["KullaniciAdi"]</h3>
+                                                <span>@Session["KullaniciMail"]</span>
+                                            </div>
+                                        </div><!--user-profile end-->
+                                        <ul class="user-fw-status">
+                                            <li>
+                                                <h4>Bölümü</h4>
+                                                <span>@Session["BolumAdi"]</span>
+                                            </li>
+                                            <li>
+                                                <h4>Sınıfı</h4>
+                                                <span>@Session["OgrenciSinif"]</span>
+                                            </li>
+                                            <li>
+                                                <a href="/Home/Profilim/" title="">Profili Gör</a>
+                                            </li>
+                                        </ul>
+                                    </div><!--user-data end-->
+                                    <div class="tags-sec full-width">
+                                        <ul>
+                                            <li><a href="#" title="">Help Center</a></li>
+                                            <li><a href="#" title="">Hakkımızda</a></li>
+                                            <li><a href="#" title="">Privacy Policy</a></li>
+                                            <li><a href="#" title="">Community Guidelines</a></li>
+                                            <li><a href="#" title="">Cookies Policy</a></li>
+                                            <li><a href="#" title="">Career</a></li>
+                                            <li><a href="#" title="">Language</a></li>
+                                            <li><a href="#" title="">Copyright Policy</a></li>
+                                        </ul>
+                                        <div class="cp-sec">
+                                            <img src="images/logo2.png" alt="">
+                                            <p><img src="images/cp.png" alt="">BOB 2020</p>
+                                        </div>
+                                    </div>
+
+                                </div><!--main-left-sidebar end-->
+                            </div>
+                            <div class="col-lg-6 col-md-8 no-pd">
+                                <div class="main-ws-sec">
+                                    @if (Session["rol"].ToString() != "Ogrenci")
+                                    {
+                                        <div class="post-topbar">
+                                            <div class="user-picy">
+                                                <img src="@Session["ProfilResim"]" alt="">
+                                            </div>
+                                            <div class="post-st">
+                                                <span style="color:#686868;">Bir şeyler duyumrak için tıklayın...</span>
+                                                <br />
+                                                <br />
+                                                <ul>
+                                                    @if (Session["rol"].ToString() == "Akademisyen")
+                                                    {
+                                                        <li><a class="post_project " href="#" title="">Genel</a></li>
+                                                        <li>
+                                                            <!-- Button to Open the Modal -->
+                                                            <a  class="yeniButon" data-toggle="modal" data-target="#ModalLoginForm">
+                                                                Ödev Duyurusu
+                                                            </a>
+                                                        </li>
+                                                        <li><a class="post-jb avtive " href="#" title="">İş ve Staj</a></li>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <li><a class="post-jb " href="#" title="">İş ve Staj</a></li>
+                                                    }
+
+                                                </ul>
+                                            </div>
+                                        </div><!--post-topbar end-->
+                                    }
+                                    else
+                                    {<div class="post-topbar">
+                                            <h2 class="day-message"> Hoş Geldin @Session["KullaniciAdi"] !</h2>
+
+                                        </div>
+                                    }
+                                    @RenderBody()
+                                </div><!--main-ws-sec end-->
+                            </div>
+                            <div class="col-lg-3 pd-right-none no-pd">
+                                <div class="right-sidebar">
+                                    <div class="widget widget-jobs">
+                                        <div class="sd-title">
+
+                                            @if (Session["rol"].ToString() == "Mezun")
+                                            {
+                                                <h3>Ödev Duyuruları</h3>
+                                            }
+                                            else
+                                            {
+                                                <h3><a href="/Duyuru/OdevDuyuruListele" class="isteColor">Ödev Duyuruları</a></h3>
+                                            }
+
+                                        </div>
+                                        <div class="jobs-list">
+
+
+                                            @{
+                                                Html.RenderAction("DuyuruWidget", "Duyuru");
+                                            }
+
+                                        </div><!--jobs-list end-->
+                                    </div><!--widget-jobs end-->
+                                    @{
+                                        Html.RenderAction("EnSonIsDuyurulari", "Duyuru");
+                                    }
+                                </div><!--right-sidebar end-->
+                            </div>
+                        </div>
+                    </div><!-- main-section-data end-->
+                </div>
+            </div>
+            @{
+                Html.RenderAction("DuyuruEkle", "Duyuru");
+            }
+            @{
+                Html.RenderAction("DuyuruEkleis", "Duyuru");
+            }<!--post-project-popup end-->
+            <!-- Modal HTML Markup -->
+            <div id="ModalLoginForm" class="modal fade">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title">Ödev Ekle</h1>
+                        </div>
+                        <div class="modal-body">
+                            @using (Html.BeginForm("OdevDuyuruEkle", "Duyuru", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                            {
+                                <input type="hidden" name="_token" value="">
+                                <div class="form-group">
+                                    <label class="control-label">Duyuru Başlığı</label>
+                                    <div>
+                                        <input type="text" class="form-control input-lg" name="Baslik" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Duyuru Resmi</label>
+                                    <div>
+                                        <input type="file" class="form-control input-lg" name="file" value="" accept=".jpg,.png,.jpeg">
+                                    </div>
+                                </div>
+                                <div class="form-group" style="display:none">
+                                    <label class="control-label">Duyuru Tipi</label>
+                                    <div>
+                                        <select name="DuyuruTipi">
+                                            <option value="6">6</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Yorum Yapılsın Mı?</label>
+                                    <div>
+                                        <label class="radio-inline"><input style="height:25px" type="radio" name="yorumDurumu" id="yorumAcik" value="Açık">Açık</label>
+                                        <label class="radio-inline"><input style="height:25px" type="radio" name="yorumDurumu" id="yorumKapali" value="Kapalı">Kapalı</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Duyuru Açıklama</label>
+                                    <div>
+                                        <textarea name="Aciklama" class="form-control input-lg"> </textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <button type="submit" class="btn btn-success">
+                                            Yayınla
+                                        </button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+
+
+        </main>
+    </div>
+    <footer>
+        <div class="footy-sec mn no-margin">
+            <div class="container">
+                <ul>
+                    <li><a href="#" title="">Help Center</a></li>
+                    <li><a href="#" title="">Privacy Policy</a></li>
+                    <li><a href="#" title="">Community Guidelines</a></li>
+                    <li><a href="#" title="">Cookies Policy</a></li>
+                    <li><a href="#" title="">Career</a></li>
+                    <li><a href="#" title="">Forum</a></li>
+                    <li><a href="#" title="">Language</a></li>
+                    <li><a href="#" title="">Copyright Policy</a></li>
+                </ul>
+                <p><img src="images/copy-icon2.png" alt="">Copyright BOB 2020</p>
+                <img class="fl-rgt" src="images/logo2.png" alt="">
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="~/TemaYeni/HTML/js/popper.js"></script>
+    <script src="~/TemaYeni/HTML/js/bootstrap.min.js"></script>
+    <script src="~/TemaYeni/HTML/js/jquery.min.js"></script>
+    <script src="~/TemaYeni/HTML/js/script.js"></script>
+    <script src="~/TemaYeni/HTML/js/scrollbar.js"></script>
+    <script src="~/TemaYeni/HTML/js/flatpickr.min.js"></script>
+    <script src="~/TemaYeni/HTML/js/jquery.mCustomScrollbar.js"></script>
+    <script src="~/TemaYeni/HTML/js/jquery.range-min.js"></script>
+    <script src="~/TemaYeni/HTML/lib/slick/slick.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+</body>
+</html>

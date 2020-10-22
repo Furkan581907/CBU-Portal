@@ -1,0 +1,83 @@
+﻿@{
+
+    ViewBag.Title = "AkademisyenListele";
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model CbuPortal.Models.Entities.OgrenciListEntities
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">Öğrenci Görüntüle</div>
+            <div class="card-body card-block">
+                <form action="~/Admin/OgrenciDuzenle/@Model.OgrenciNo" method="post" class="">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            <input type="email" id="" name="OgrenciNo" placeholder="OgrenciMail" value="@Model.OgrenciNo" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            <input type="email" id="" name="OgrenciMail" placeholder="OgrenciMail" value="@Model.OgrenciMail" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            <input type="email" id="" name="OgrenciTelefon" placeholder="OgrenciTelefon" value="@Model.OgrenciTelefon" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            <input type="text" id="email" name="OgrenciAdi" placeholder="Adi" value="@Model.OgrenciAdi" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            <input type="text" id="email" name="OgrenciSoyadi" placeholder="Soyadi" value="@Model.OgrenciSoyadi" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            <input type="text" id="email" name="OgrenciBolumID" placeholder="BolumId" value="@Model.OgrenciBolumID" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            @if (Model.Aktiflik == true)
+                            {
+                                <select name="aktiflik" id="selectSm" class="form-control-sm form-control">
+                                    <option value="True" selected>Aktif</option>
+                                    <option value="False">Pasif</option>
+
+                                </select>
+                            }
+                            else
+                            {
+                                {
+                                    <select name="aktiflik" id="selectSm" class="form-control-sm form-control">
+                                        <option value="True">Aktif</option>
+                                        <option value="False" selected>Pasif</option>
+
+                                    </select>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="form-actions form-group"><button type="submit" class="btn btn-success btn-sm">Düzenle</button></div>
+                </form>
+        </div>
+        </div>
+    </div>
+
+</div>

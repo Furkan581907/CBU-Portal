@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "FavorileriListele";
+    Layout = "~/Views/Shared/_LayoutDuyuru.cshtml";
+}
+
+@helper IcerikKisaltma(string metin)
+{               string a = "... Devamı İçin Detaylı İnceleyiniz";
+    if (metin.Length > 250)
+    {
+        @metin.Substring(0, 250) @a
+    }
+    else
+    {
+        @metin
+    }
+}
+
+@model List<CbuPortal.Models.Duyurular>
+
+<div class="search-box" style="margin-bottom:20px">
+    <form>
+        <input type="text" name="search" placeholder="Favorilerde Ara...">
+        <button type="submit">Ara</button>
+    </form>
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="post-bar">
+        <div class="post_topbar">
+            <div class="usy-dt">
+                <img src="@Html.Action("DuyuruYapaninResmi", "Duyuru", new { id = item.DuyuruyuYapanId })" style="width:18%">
+                <div class="usy-name">
+                    <h3>@Html.Action("DuyuruYapan", "Duyuru", new { id = item.DuyuruyuYapanId })</h3>
+                    <span><img src="~/TemaYeni/Theme/HTML/images/clock.png" alt="">@item.DuyuruTarihi.Value.ToShortDateString()</span>
+                </div>
+            </div>
+            @if (item.DuyuruyuYapanId == Convert.ToInt32(Session["KullaniciId"]))
+            {
+                <div class="ed-opts">
+                    <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+
+                    <ul class="ed-options">
+                        <li>
+                            <a href="/Duyuru/DuyuruyuSil/@item.Id">Duyuruyu Sil</a>
+                        </li>
+                    </ul>
+
+                </div>
+            }
+
+        </div>
+        <div class="epi-sec">
+            <ul class="descp"></ul>
+            <ul class="bk-links">
+                <li style="cursor:pointer; color:blue"><a href="/Duyuru/FavoriKaldir/@item.Id" title=""><i class="fas fa-heart-broken"></i></a></li>
+                <li><a href="/Duyuru/DuyuruDetay/@item.Id" title=""><i class="la la-comment"></i></a></li>
+            </ul>
+        </div>
+        <div class="job_descp">
+            <h3>@item.Baslik</h3>
+            <p>@IcerikKisaltma(item.Aciklama) <a href="/Duyuru/DuyuruDetay/@item.Id" title="">Detaylı Bilgi</a></p>
+
+        </div>
+        <div class="job-status-bar">
+            <ul class="like-com">
+                <li>
+                    <a href="/Duyuru/FavoriKaldir/@item.Id" title=""><i class="fas fa-heart-broken"></i> Favoriyi Kaldir</a>
+                    <img src="~/TemaYeni/HTML/images/liked-img.png" alt="">
+                    <span>@Html.Action("DuyurununKaydedilmeSayisi", "Duyuru", new { id = item.Id })</span>
+                </li>
+                <li style="margin-left:10px"> <span><i class="fa fa-comment"> </i>@Html.Action("YorumSayisi", "Yorum", new { id = item.Id })</span></li>
+            </ul>
+
+        </div>
+    </div>
+}

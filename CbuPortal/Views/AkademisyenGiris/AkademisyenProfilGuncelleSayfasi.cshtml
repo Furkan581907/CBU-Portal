@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Akademisyen Profil Güncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-12 col-sm-8 col-lg-6 col-xl-7 mt-2 mt-sm-5">
+    @using (Html.BeginForm("AkademisyenProfilGuncelle", "AkademisyenGiris", new { id = Session["KullaniciId"] }, FormMethod.Post, null))
+    {
+        @Html.AntiForgeryToken()
+
+
+        <form class="needs-validation" action="/Home/OgrenciProfil" method="post" enctype="multipart/form-data">
+            <h5>Adınız</h5>
+            <div class="input-group form-group">
+                <input class="form-control" placeholder="@Session["KullaniciAdi"]" name="akademisyenAdi" type="text">
+            </div>
+            <h5>Soyadınız</h5>
+            <div class="input-group form-group">
+                <input class="form-control" placeholder="@Session["KullaniciSoyad"]" name="akademisyenSoyadi" type="text">
+            </div>
+            <div class="input-group form-group">
+                <input class="form-control" placeholder="@Session["KullaniciMail"]" name="akademisyenMail" type="email">
+            </div>
+            <div class="form-group mb-4" style="text-align:center">
+                <input type="submit" value="Profili Güncelle" class="btn btn-success">
+            </div>
+
+        </form>
+
+    }
+</div>

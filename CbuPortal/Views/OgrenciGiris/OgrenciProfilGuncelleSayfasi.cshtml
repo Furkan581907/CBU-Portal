@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "OgrenciProfilGuncelleSayfasi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-12 col-sm-8 col-lg-6 col-xl-7 mt-2 mt-sm-5">
+    @using (Html.BeginForm("OgrenciProfilGuncelle", "OgrenciGiris", new { id = Session["KullaniciId"] }, FormMethod.Post, null))
+    {
+        @Html.AntiForgeryToken()
+
+
+    <form class="needs-validation" action="/Home/OgrenciProfil" method="post" enctype="multipart/form-data">
+        <h5>Adınız</h5>
+        <div class="input-group form-group">
+            <input class="form-control" placeholder="@Session["KullaniciAdi"]" name="ogrenciAdi" type="text">
+        </div>
+        <h5>Soyadınız</h5>
+        <div class="input-group form-group">
+            <input class="form-control" placeholder="@Session["KullaniciSoyad"]" name="ogrenciSoyadi" type="text">
+        </div>
+        <div class="input-group form-group">
+            <input class="form-control" placeholder="@Session["KullaniciMail"]" name="ogrenciMail" type="email">
+        </div>
+        @*<div class="input-group form-group">
+            <h5 style="font-size:18px; font-weight:500">Mezun Oldunuz Mu?</h5>
+            <input type="checkbox" name="mezunOldum" style="position: relative;margin-left: 15px;width: 25px; height: 25px;">
+        </div>*@
+
+        <div class="form-group mb-4" style="text-align:center">
+            <input type="submit" value="Profili Güncelle" class="btn btn-success">
+        </div>
+
+    </form>
+
+    }
+</div>

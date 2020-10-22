@@ -1,0 +1,182 @@
+﻿@{
+    ViewBag.Title = "Hesap Ayarları";
+    Layout = "~/Views/Shared/_LayoutDuyuru.cshtml";
+}
+
+<div class="col-lg-3">
+    <div class="acc-leftbar">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link" id="nav-password-tab" data-toggle="tab" href="#nav-password" role="tab" aria-controls="nav-password" aria-selected="false"><i class="fa fa-lock"></i>Şifre Değiştir</a>
+            <a class="nav-item nav-link" id="nav-notification-tab" data-toggle="tab" href="#nav-notification" role="tab" aria-controls="nav-notification" aria-selected="false"><i class="fa fa-flash"></i>Bildirimler</a>
+            <a class="nav-item nav-link" id="nav-deactivate-tab" data-toggle="tab" href="#nav-deactivate" role="tab" aria-controls="nav-deactivate" aria-selected="false"><i class="fa fa-random"></i>Hesap Bilgilerini Değiştir</a>
+        </div>
+    </div><!--acc-leftbar end-->
+</div>
+<div class="col-lg-9">
+    <div class="tab-content" id="nav-tabContent">
+
+        @*Bu kalacak*@
+        <div class="tab-pane fade" id="nav-password" role="tabpanel" aria-labelledby="nav-password-tab">
+            <div class="acc-setting">
+                <h3>Şifre İşlemleri</h3>
+                @using (Html.BeginForm("SifreDegistir", "Home", FormMethod.Post, null))
+                {
+                    <div class="cp-field">
+                        <h5>Eski Şifre</h5>
+                        <div class="cpp-fiel">
+                            <input autocomplete="off" type="password" name="EskiSifre" placeholder="Eski Şifrenizi Giriniz">
+                            <i class="fa fa-lock"></i>
+                        </div>
+                    </div>
+                    <div class="cp-field">
+                        <h5>Yeni Şifre</h5>
+                        <div class="cpp-fiel">
+                            <input autocomplete="off" type="password" name="YeniSifre" placeholder="Yeni Şifrenizi Giriniz">
+                            <i class="fa fa-lock"></i>
+                        </div>
+                    </div>
+                    <div class="cp-field">
+                        <h5>Yeni Şifre Tekrar</h5>
+                        <div class="cpp-fiel">
+                            <input autocomplete="off" type="password" name="YeniSifreTekrar" placeholder="Yeni Şifrenizi Tekrar Giriniz">
+                            <i class="fa fa-lock"></i>
+                        </div>
+                    </div>
+                    <div class="save-stngs pd2">
+                        <ul>
+                            <li><button type="submit">Şifreyi Değiştir</button></li>
+                        </ul>
+                    </div><!--save-stngs end-->
+                }
+            </div><!--acc-setting end-->
+        </div>
+        @*Bu kalacak*@
+        <div class="tab-pane fade" id="nav-notification" role="tabpanel" aria-labelledby="nav-notification-tab">
+            <div class="acc-setting">
+                <h3>Bildirimler</h3>
+                <div class="notifications-list">
+                    <div class="notfication-details">
+                        <div class="noty-user-img">
+                            <img src="http://via.placeholder.com/35x35" alt="">
+                        </div>
+                        <div class="notification-info">
+                            <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+                            <span>2 min ago</span>
+                        </div><!--notification-info -->
+                    </div><!--notfication-details end-->
+                    <div class="notfication-details">
+                        <div class="noty-user-img">
+                            <img src="http://via.placeholder.com/35x35" alt="">
+                        </div>
+                        <div class="notification-info">
+                            <h3><a href="#" title="">Poonam Verma</a> Bid on your Latest project.</h3>
+                            <span>2 min ago</span>
+                        </div><!--notification-info -->
+                    </div><!--notfication-details end-->
+                    <div class="notfication-details">
+                        <div class="noty-user-img">
+                            <img src="http://via.placeholder.com/35x35" alt="">
+                        </div>
+                        <div class="notification-info">
+                            <h3><a href="#" title="">Tonney Dhman</a> Comment on your project.</h3>
+                            <span>2 min ago</span>
+                        </div><!--notification-info -->
+                    </div><!--notfication-details end-->
+                    <div class="notfication-details">
+                        <div class="noty-user-img">
+                            <img src="http://via.placeholder.com/35x35" alt="">
+                        </div>
+                        <div class="notification-info">
+                            <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+                            <span>2 min ago</span>
+                        </div><!--notification-info -->
+                    </div><!--notfication-details end-->
+                    <div class="notfication-details">
+                        <div class="noty-user-img">
+                            <img src="http://via.placeholder.com/35x35" alt="">
+                        </div>
+                        <div class="notification-info">
+                            <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+                            <span>2 min ago</span>
+                        </div><!--notification-info -->
+                    </div><!--notfication-details end-->
+                    <div class="notfication-details">
+                        <div class="noty-user-img">
+                            <img src="http://via.placeholder.com/35x35" alt="">
+                        </div>
+                        <div class="notification-info">
+                            <h3><a href="#" title="">Poonam Verma </a> Bid on your Latest project.</h3>
+                            <span>2 min ago</span>
+                        </div><!--notification-info -->
+                    </div><!--notfication-details end-->
+                    <div class="notfication-details">
+                        <div class="noty-user-img">
+                            <img src="http://via.placeholder.com/35x35" alt="">
+                        </div>
+                        <div class="notification-info">
+                            <h3><a href="#" title="">Tonney Dhman</a> Comment on your project</h3>
+                            <span>2 min ago</span>
+                        </div><!--notification-info -->
+                    </div><!--notfication-details end-->
+                    <div class="notfication-details">
+                        <div class="noty-user-img">
+                            <img src="http://via.placeholder.com/35x35" alt="">
+                        </div>
+                        <div class="notification-info">
+                            <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+                            <span>2 min ago</span>
+                        </div><!--notification-info -->
+                    </div><!--notfication-details end-->
+                </div><!--notifications-list end-->
+            </div><!--acc-setting end-->
+        </div>
+        @*Bu kalacak*@
+        @TempData["Message"]
+        <div class="tab-pane fade" id="nav-deactivate" role="tabpanel" aria-labelledby="nav-deactivate-tab">
+            <div class="acc-setting">
+                <h3>Hesap Bilgilerini Değiştir</h3>
+                @using (Html.BeginForm("HesapGuncelle", "Home", FormMethod.Post, null))
+                {
+                    <div class="cp-field">
+                        <h5>Email</h5>
+                        <div class="cpp-fiel">
+                            <input type="email" name="email" placeholder="Email">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                    </div>
+                    <div class="cp-field">
+                        <h5>Adınız</h5>
+                        <div class="cpp-fiel">
+                            <input type="text" name="adi" placeholder="Adınız">
+                            <i class="fas fa-user-edit"></i>
+                        </div>
+                    </div>
+                    <div class="cp-field">
+                        <h5>Soy Adınız</h5>
+                        <div class="cpp-fiel">
+                            <input type="text" name="soyadi" placeholder="Soy Adınız">
+                            <i class="fas fa-user-edit"></i>
+                        </div>
+                    </div>
+                    <div class="cp-field">
+                        <h5>Biyografinizi Güncelleyin</h5>
+                        <textarea name="biyografi" placeholder="Biyografiniz, diğer kullanıcılar ve siz tarafından görüntülenebilir."></textarea>
+                    </div>
+                    <div class="save-stngs pd3">
+                        <ul>
+                            <li><button type="submit">Hesabımı Güncelle</button></li>
+                        </ul>
+                    </div><!--save-stngs end-->
+                }
+            </div><!--acc-setting end-->
+        </div>
+    </div>
+</div>
+<script src="~/TemaYeni/HTML/js/popper.js"></script>
+<script src="~/TemaYeni/HTML/js/script.js"></script>
+<script src="~/TemaYeni/HTML/js/scrollbar.js"></script>
+<script src="~/TemaYeni/HTML/js/flatpickr.min.js"></script>
+<script src="~/TemaYeni/HTML/js/jquery.mCustomScrollbar.js"></script>
+<script src="~/TemaYeni/HTML/js/jquery.range-min.js"></script>
+<script src="~/TemaYeni/HTML/lib/slick/slick.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

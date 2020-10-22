@@ -1,0 +1,448 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CBU PORTAL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href="~/Theme/fontawesome/css/all.css" rel="stylesheet" />
+    <link href="~/Theme/css/anasayfa.css" rel="stylesheet" />
+    <link href="~/Theme/css/fontawesome.css" rel="stylesheet" />
+    <link href="~/Theme/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/animate.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/lib/slick/slick.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/lib/slick/slick-theme.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/line-awesome-font-awesome.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/TemaYeni/HTML/css/line-awesome-font-awesome.min.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/line-awesome.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/line-awesome.min.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/responsive.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/style.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/flatpickr.min.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/jquery.range.css" rel="stylesheet" />
+    <link href="~/TemaYeni/HTML/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+</head>
+
+
+<body>
+    <div class="wrapper">
+
+        <header>
+            <div class="container">
+                <div class="header-data">
+                    <div class="logo">
+                        <a href="#" title=""><img src="~/TemaYeni/HTML/images/cbu-portal.png" width="30" height="30" alt=""></a>
+                    </div><!--logo end-->
+                    <div class="search-bar">
+                        @using (Html.BeginForm("AramaSonucu", "Duyuru", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                        {
+                            <input type="text" name="search" placeholder="Duyurularda Ara...">
+                            <button type="submit"><i class="la la-search"></i></button>
+                        }
+                    </div><!--search-bar end-->
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="/Home/Index" title="">
+                                    <span><i class="fa fa-home"></i></span>
+                                    Ana Sayfa
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Duyuru/FavorileriListele/@Session["KullaniciId"]" title="">
+                                    <span><i class="fas fa-heart"></i></span>
+                                    Favoriler
+                                </a>
+                            </li>
+                            @if (Session["rol"].ToString() != "Akademisyen")
+                            {
+                                <li>
+                                    <a href="/AkademisyenGiris/AkademisyenlerSayfasi" title="">
+                                        <span><i class="fas fa-chalkboard-teacher"></i></span>
+                                        Akademisyenler
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="/OgrenciGiris/MezunlarSayfasi" title="">
+                                        <span><img src="~/TemaYeni/HTML/images/icon4.png" alt=""></span>
+                                        Öğrenciler
+                                    </a>
+                                </li>
+                            }
+
+                            <li>
+                                <a href="/Duyuru/IsDuyurulariSayfasi" title="">
+                                    <span><i class="fas fa-briefcase"></i></span>
+                                    İş İlanları
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" title="" class="not-box-open">
+                                    <span><img src="~/TemaYeni/HTML/images/icon6.png" alt=""></span>
+                                    Mesajlar
+                                </a>
+                                <div class="notification-box msg">
+                                    <div class="nt-title">
+                                        <h4>Setting</h4>
+                                        <a href="#" title="">Clear all</a>
+                                    </div>
+                                    <div class="nott-list">
+                                        <div class="notfication-details">
+                                            <div class="noty-user-img">
+                                                <img src="~/TemaYeni/HTML/images/resources/ny-img1.png" alt="">
+                                            </div>
+                                            <div class="notification-info">
+                                                <h3><a href="messages.html" title="">Jassica William</a> </h3>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</p>
+                                                <span>2 min ago</span>
+                                            </div><!--notification-info -->
+                                        </div>
+                                        <div class="notfication-details">
+                                            <div class="noty-user-img">
+                                                <img src="~/TemaYeni/HTML/images/resources/ny-img2.png" alt="">
+                                            </div>
+                                            <div class="notification-info">
+                                                <h3><a href="messages.html" title="">Jassica William</a></h3>
+                                                <p>Lorem ipsum dolor sit amet.</p>
+                                                <span>2 min ago</span>
+                                            </div><!--notification-info -->
+                                        </div>
+                                        <div class="notfication-details">
+                                            <div class="noty-user-img">
+                                                <img src="~/TemaYeni/HTML/images/resources/ny-img3.png" alt="">
+                                            </div>
+                                            <div class="notification-info">
+                                                <h3><a href="messages.html" title="">Jassica William</a></h3>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut labore et dolore magna aliqua.</p>
+                                                <span>2 min ago</span>
+                                            </div><!--notification-info -->
+                                        </div>
+                                        <div class="view-all-nots">
+                                            <a href="messages.html" title="">View All Messsages</a>
+                                        </div>
+                                    </div><!--nott-list end-->
+                                </div><!--notification-box end-->
+                            </li>
+                            <li>
+                                <a href="#" title="" class="not-box-open">
+                                    <span><i class="fa fa-bolt"></i></span>
+                                    Billdirim
+                                </a>
+                                <div class="notification-box">
+                                    <div class="nt-title">
+                                        <h4>Setting</h4>
+                                        <a href="#" title="">Clear all</a>
+                                    </div>
+                                    <div class="nott-list">
+                                        <div class="notfication-details">
+                                            <div class="noty-user-img">
+                                                <img src="~/TemaYeni/HTML/images/resources/ny-img1.png" alt="">
+                                            </div>
+                                            <div class="notification-info">
+                                                <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+                                                <span>2 min ago</span>
+                                            </div><!--notification-info -->
+                                        </div>
+                                        <div class="notfication-details">
+                                            <div class="noty-user-img">
+                                                <img src="~/TemaYeni/HTML/images/resources/ny-img2.png" alt="">
+                                            </div>
+                                            <div class="notification-info">
+                                                <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+                                                <span>2 min ago</span>
+                                            </div><!--notification-info -->
+                                        </div>
+                                        <div class="notfication-details">
+                                            <div class="noty-user-img">
+                                                <img src="~/TemaYeni/HTML/images/resources/ny-img3.png" alt="">
+                                            </div>
+                                            <div class="notification-info">
+                                                <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+                                                <span>2 min ago</span>
+                                            </div><!--notification-info -->
+                                        </div>
+                                        <div class="notfication-details">
+                                            <div class="noty-user-img">
+                                                <img src="~/TemaYeni/HTML/images/resources/ny-img2.png" alt="">
+                                            </div>
+                                            <div class="notification-info">
+                                                <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+                                                <span>2 min ago</span>
+                                            </div><!--notification-info -->
+                                        </div>
+                                        <div class="view-all-nots">
+                                            <a href="#" title="">View All Notification</a>
+                                        </div>
+                                    </div><!--nott-list end-->
+                                </div><!--notification-box end-->
+                            </li>
+                        </ul>
+                    </nav><!--nav end-->
+                    <div class="menu-btn">
+                        <a href="#" title=""><i class="fa fa-bars"></i></a>
+                    </div><!--menu-btn end-->
+                    <div class="user-account">
+
+                        <div class="user-info">
+                            <a href="#" style="font-size:18px">@Session["KullaniciAdi"]</a>
+                            <i class="la la-sort-down"></i>
+                        </div>
+                        <div class="user-account-settingss">
+                            <h3>Hesabınız</h3>
+                            <ul class="us-links">
+                                <li><a href="/Home/HesapAyarlari" title="">Hesap Ayarları</a></li>
+                                <li><a href="#" title="">Profil Ayarları</a></li>
+                                <li><a href="/Home/Profilim" title="">Profiliniz</a></li>
+                            </ul>
+                            <h3 class="tc"><a href="/OgrenciGiris/CikisYap" title="">Çıkış Yap</a></h3>
+                        </div><!--user-account-settingss end-->
+                    </div>
+                </div><!--header-data end-->
+            </div>
+        </header><!--header end-->
+        <section class="cover-sec">
+            @if (Session["rol"].ToString() == "Akademisyen")
+            {
+                <img src="~/TemaYeni/HTML/images/uniHoca.jpg" />
+            }
+            else
+            {
+                <img src="~/TemaYeni/HTML/images/uniOgrenci.jpg" />
+            }
+        </section>
+
+        <main>
+            <div class="main-section">
+                <div class="container">
+                    <div class="main-section-data">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="main-left-sidebar">
+                                    <div class="user_profile">
+                                        <div class="user-pro-img">
+                                            <img src="@ViewData["ProfilGosterResim"]" style="width:95%" alt="">
+                                        </div><!--user-pro-img end-->
+                                        <div class="form-group">
+                                            <a class="" href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-edit">Resmi Güncelle</i></a>
+                                        </div>
+                                        <hr style="margin-top: 3rem;" />
+                                        <ul class="social_links">
+                                            <li><a href="#" title=""><i class="la la-globe"></i> @ViewData["PorfiliGosterDurumu"]</a></li>
+                                            <li><a href="#" title=""><i class="la la-globe"></i> @ViewData["PorfiliGosterDiger"]</a></li>
+                                            <li><a href="#" title=""><i class="fa fa-facebook-square"></i> Http://www.facebook.com/@ViewData["ProfiliGosterFace"]</a></li>
+                                            <li><a href="#" title=""><i class="fa fa-instagram"></i> Http://www.instagram.com/@ViewData["ProfiliGosterInsta"]</a></li>
+                                            <li><a href="#" title=""><i class="fa fa-linkedin-in"></i> Http://www.linkedin.com/@ViewData["ProfiliGosterLinkedin"]</a></li>
+                                        </ul>
+                                    </div><!--user_profile end-->
+                                    @{
+                                        Html.RenderAction("EnSonDuyurular", "Duyuru");
+                                    }
+                                </div>
+                                <div id="myModal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Resim Güncelle</h4>
+                                            </div>
+                                            <form action="/Home/ProfilResmiGuncelle" method="post" enctype="multipart/form-data">
+                                                <div class="modal-body">
+                                                    <input type="file" class="form-control bari" name="file" id="foo" style="padding-bottom:35px;" accept=".jpg,.jpeg,.png">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-success">Yükle</button>
+                                                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+                                </div><!--main-left-sidebar end-->
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="main-ws-sec">
+                                    <div class="user-tab-sec">
+                                        <h3> @ViewData["ProfiliGosterAd"] @ViewData["ProfiliGosterSoyad"]</h3>
+                                        <div class="star-descp">
+                                            <span>@ViewData["ProfiliGosterRol"]
+                                        </div><!--star-descp end-->
+                                        <div class="tab-feed">
+                                            <ul>
+                                                @if (ViewData["ProfiliGosterRol"].ToString() != "Ogrenci")
+                                                {
+                                                    <li data-tab="feed-dd" class="active">
+                                                        <a href="#" title="">
+                                                            <img src="images/ic1.png" alt="">
+                                                            <span>Paylaşımlar</span>
+                                                        </a>
+                                                    </li>
+
+
+                                                    <li data-tab="info-dd">
+                                                        <a href="#" title="">
+                                                            <img src="images/ic2.png" alt="">
+                                                            <span>Biyografi</span>
+                                                        </a>
+                                                    </li>
+
+                                                }
+                                                else
+                                                {
+
+                                                    <li data-tab="info-dd" class="">
+                                                        <a href="#" title="">
+                                                            <img src="images/ic2.png" alt="">
+                                                            <span>Biyografi</span>
+                                                        </a>
+                                                    </li>
+                                                }
+
+                                            </ul>
+                                        </div><!-- tab-feed end-->
+                                    </div><!--user-tab-sec end-->
+
+
+
+                                    @{
+                                        Html.RenderAction("KendiPaylastiklarim", "Home");
+                                    }
+                                    <div class="product-feed-tab" id="info-dd">
+                                        <div class="user-profile-ov">
+                                            <h3>Overview</h3>
+                                            <p>@TempData["Biyografim"]</p>
+                                        </div><!--user-profile-ov end-->
+                                        <div class="user-profile-ov st2">
+                                            <h3>Experience</h3>
+                                            <h4>Web designer</h4>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. </p>
+                                            <h4>UI / UX Designer</h4>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id.</p>
+                                            <h4>PHP developer</h4>
+                                            <p class="no-margin">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. </p>
+                                        </div><!--user-profile-ov end-->
+                                        <div class="user-profile-ov">
+                                            <h3>Education</h3>
+                                            <h4>Master of Computer Science</h4>
+                                            <span>2015 - 2018</span>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. </p>
+                                        </div><!--user-profile-ov end-->
+                                    </div><!--product-feed-tab end-->
+                                    <div class="product-feed-tab" id="portfolio-dd">
+                                        <div class="portfolio-gallery-sec">
+                                            <h3>Portfolio</h3>
+                                            <div class="gallery_pf">
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                                        <div class="gallery_pt">
+                                                            <img src="http://via.placeholder.com/271x174" alt="">
+                                                            <a href="#" title=""><img src="images/all-out.png" alt=""></a>
+                                                        </div><!--gallery_pt end-->
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                                        <div class="gallery_pt">
+                                                            <img src="http://via.placeholder.com/170x170" alt="">
+                                                            <a href="#" title=""><img src="images/all-out.png" alt=""></a>
+                                                        </div><!--gallery_pt end-->
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                                        <div class="gallery_pt">
+                                                            <img src="http://via.placeholder.com/170x170" alt="">
+                                                            <a href="#" title=""><img src="images/all-out.png" alt=""></a>
+                                                        </div><!--gallery_pt end-->
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                                        <div class="gallery_pt">
+                                                            <img src="http://via.placeholder.com/170x170" alt="">
+                                                            <a href="#" title=""><img src="images/all-out.png" alt=""></a>
+                                                        </div><!--gallery_pt end-->
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                                        <div class="gallery_pt">
+                                                            <img src="http://via.placeholder.com/170x170" alt="">
+                                                            <a href="#" title=""><img src="images/all-out.png" alt=""></a>
+                                                        </div><!--gallery_pt end-->
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                                        <div class="gallery_pt">
+                                                            <img src="http://via.placeholder.com/170x170" alt="">
+                                                            <a href="#" title=""><img src="images/all-out.png" alt=""></a>
+                                                        </div><!--gallery_pt end-->
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                                        <div class="gallery_pt">
+                                                            <img src="http://via.placeholder.com/170x170" alt="">
+                                                            <a href="#" title=""><img src="images/all-out.png" alt=""></a>
+                                                        </div><!--gallery_pt end-->
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                                        <div class="gallery_pt">
+                                                            <img src="http://via.placeholder.com/170x170" alt="">
+                                                            <a href="#" title=""><img src="images/all-out.png" alt=""></a>
+                                                        </div><!--gallery_pt end-->
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                                        <div class="gallery_pt">
+                                                            <img src="http://via.placeholder.com/170x170" alt="">
+                                                            <a href="#" title=""><img src="images/all-out.png" alt=""></a>
+                                                        </div><!--gallery_pt end-->
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                                        <div class="gallery_pt">
+                                                            <img src="http://via.placeholder.com/170x170" alt="">
+                                                            <a href="#" title=""><img src="images/all-out.png" alt=""></a>
+                                                        </div><!--gallery_pt end-->
+                                                    </div>
+                                                </div>
+                                            </div><!--gallery_pf end-->
+                                        </div><!--portfolio-gallery-sec end-->
+                                    </div><!--product-feed-tab end-->
+
+                                    <script src="~/TemaYeni/HTML/js/jquery.min.js"></script>
+                                    <script src="~/TemaYeni/HTML/js/popper.js"></script>
+                                    <script src="~/TemaYeni/HTML/lib/slick/slick.min.js"></script>
+                                    <script src="~/TemaYeni/HTML/js/script.js"></script>
+                                    <script src="~/TemaYeni/HTML/js/bootstrap.min.js"></script>
+
+                                </div>
+                            </div>
+
+                            @{
+                                Html.RenderAction("SonBegenilenler", "Duyuru");
+                            }
+                        </div>
+                    </div><!-- main-section-data end-->
+                </div>
+            </div>
+
+        </main>
+
+    </div><!--theme-layout end-->
+
+
+
+    <script src="~/TemaYeni/HTML/js/popper.js"></script>
+    <script src="~/TemaYeni/HTML/js/bootstrap.min.js"></script>
+    <script src="~/TemaYeni/HTML/js/jquery.min.js"></script>
+    <script src="~/TemaYeni/HTML/js/script.js"></script>
+    <script src="~/TemaYeni/HTML/js/scrollbar.js"></script>
+    <script src="~/TemaYeni/HTML/js/flatpickr.min.js"></script>
+    <script src="~/TemaYeni/HTML/js/jquery.mCustomScrollbar.js"></script>
+    <script src="~/TemaYeni/HTML/js/jquery.range-min.js"></script>
+    <script src="~/TemaYeni/HTML/lib/slick/slick.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</body>
+</html>
